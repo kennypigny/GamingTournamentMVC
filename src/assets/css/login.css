@@ -1,0 +1,114 @@
+/* GENERAL */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto Condensed", sans-serif;
+  font-optical-sizing: auto;
+  
+  text-shadow: 0 0 10px rgb(0, 0, 0);}
+body {
+  height: 100vh;
+  width: 100%;
+  color: #f2f2f2;
+  background-image: url("../img/General/rue-sombre-asphalte-mouille-reflets-rayons-dans-eau_129911-2318.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+}
+
+p {
+  text-align: center;
+}
+a:visited {
+  color: rgb(158, 219, 52);
+}
+
+.containerLogin {
+  width: 90%;
+  max-width: 350px;
+  height: 530px;
+  margin: 8rem 1rem;
+  box-shadow: 0 0 15px 0px rgba(158, 219, 52);
+  background: #28303f;
+  border-radius: 15px;
+  color: #f2f2f2;
+  font-size: 1.2rem;
+  transition: box-shadow 1s;
+  position: fixed;
+}
+.containerLogin:hover {
+  box-shadow: 0 0 35px 5px rgba(158, 219, 52);
+}
+
+.logoLogin {
+  margin-bottom: 1.5rem;
+}
+
+.logoLogin img {
+  width: 100%;
+  height: 215px;
+  border-radius: 15px 15px 0 0;
+}
+
+.containerFormLogin {
+  width: 100%;
+}
+
+.containerFormLogin form {
+  width: 100%;
+}
+
+.containerFormLogin form label {
+  display: block;
+  margin: 0 auto 0.8rem;
+  text-align: center;
+}
+
+.containerFormLogin form input {
+  width: 70%;
+  height: 2rem;
+  display: block;
+  margin: 0 auto 1.5rem auto;
+}
+
+.containerButton {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.containerButton input {
+  width: 11rem;
+  height: 2rem;
+  margin: 1rem auto 1rem;
+  font-size: 1rem;
+  border-radius: 25px;
+  color: rgb(158, 219, 52);
+  background-color: #001c61;
+  box-shadow: 0 0 5px rgb(158, 219, 52);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  border: none;
+}
+.containerButton input a:visited {
+  color: rgb(158, 219, 52);
+}
+
+.containerButton input:hover {
+  transform: translateY(1px);
+  box-shadow: 0 0 10px 2px rgb(158, 219, 52);
+}
+
+.containerFormLogin form button:active {
+  transform: translateY(1px);
+  box-shadow: 0 0 10px 2px rgb(158, 219, 52);
+}
+
+input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+  font-style: italic;
+}

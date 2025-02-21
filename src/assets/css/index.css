@@ -1,0 +1,312 @@
+/* icone hamburger animation */
+.icon-hamb {
+  width: 60px;
+  height: 60px;
+  position: relative;
+}
+.container-icon {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.lign {
+  width: 100%;
+  height: 5px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  position: absolute;
+  transition: all 0.5s ease-in-out;
+}
+.lign:nth-child(1) {
+  top: 7px;
+}
+.lign:nth-child(2) {
+  top: 17px;
+}
+.lign:nth-child(3) {
+  top: 27px;
+}
+.btn-1.active .lign:nth-child(1) {
+  top: 20px;
+  transform: rotate(135deg);
+}
+.btn-1.active .lign:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+.btn-1.active .lign:nth-child(3) {
+  top: 20px;
+  transform: rotate(-135deg);
+}
+
+/* BANNER SLOGAN & CTA HEADER*/
+.main-container-header {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.container-header {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-end;
+  background-color: rgb(6, 7, 7);
+}
+.container-responsiv-header {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-end;
+}
+.container-header h1 {
+  width: 90%;
+  height: 20%;
+  font-size: 2.3rem;
+  text-align: center;
+  line-height: 4rem;
+  text-shadow: 1px 1px 25px rgb(158, 219, 52, 0.5);
+}
+.container-header h2 {
+  width: 90%;
+  height: 20%;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 2rem;
+  text-shadow: 1px 1px 25px rgb(158, 219, 52, 0.5);
+}
+.img-banner {
+  width: 100%;
+  height: 30%;
+  box-shadow: 0 0 85px rgb(158, 219, 52, 5%);
+}
+.container-cta-header {
+  width: 100%;
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cta {
+  width: 250px;
+  height: 50px;
+  font-size: 1.2rem;
+  border-radius: 25px;
+  color: rgb(158, 219, 52);
+  background-color: #001c61;
+  box-shadow: 0 0 20px 2px rgb(158, 219, 52, 0.4);
+  transition: all 0.3s ease;
+  border: none;
+}
+.cta a {
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cta:active {
+  transform: translateY(3px);
+  box-shadow: 0 0 10px 2px rgb(158, 219, 52);
+}
+.cta:hover {
+  box-shadow: 0 0 20px 2px rgb(158, 219, 52);
+}
+
+/* SELECTBOX  */
+.container-selectbox {
+  width: 100%;
+  height: auto;
+}
+form {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+label {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+select {
+  width: 100%;
+  height: 40px;
+  background-color: #1e283d;
+  text-align: center;
+  cursor: pointer;
+}
+select:hover {
+  box-shadow: inset 0 0 55px rgba(118, 118, 118, 0.2);
+}
+option {
+  cursor: pointer;
+}
+option:hover {
+  background-color: #f2f2f2;
+}
+
+/* CONTAINER DES TOURNOIS POPULAIRE  */
+.main-container-tournament {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container-tournament-mostPopular {
+  width: 90%;
+  height: auto;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.container-tournament-mostPopular h3 {
+  width: 100%;
+  margin: 40px 0;
+}
+
+/* MEDIA QUERIES */
+@media (min-width: 768px) {
+  /* HEADER */
+  header {
+    height: 70vh;
+  }
+  .container-header {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    background-color: rgb(10, 11, 11);
+    background-image: url("../img/Desktop/gaming-controller-background-banner-portal-260nw-1951046185_LE_upscale_balanced_x4.webp");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .container-header h1 {
+    width: 90%;
+    height: 20%;
+    font-size: 2rem;
+    line-height: 3.5rem;
+  }
+  label {
+    width: 26.65%;
+  }
+  select {
+    width: 100%;
+    height: 50px;
+    background-color: #1e283d;
+    text-align: center;
+    cursor: pointer;
+  }
+  .container-tournament-mostPopular {
+    width: 80%;
+    height: auto;
+    margin: 0;
+    padding-left: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .img-banner {
+    display: none;
+    width: 80%;
+    max-width: 750px;
+    height: 30%;
+    box-shadow: 0 0 85px rgb(158, 219, 52, 0);
+  }
+  .container-responsiv-header {
+    width: 40%;
+    align-items: center;
+    align-content: normal;
+  }
+  .container-header h2 {
+    font-size: 1.1em;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-header h2 {
+    font-size: 22px;
+  }
+}
+@media (min-width: 1300px) {
+  .container-header {
+    width: 85%;
+  }
+  label {
+    width: 28.35%;
+  }
+
+  .container-header h2 {
+    width: 85%;
+    font-size: 1.5rem;
+  }
+  select {
+    font-size: 1.2rem;
+  }
+}
+@media (min-width: 1418px) {
+  .container-header h1 {
+    font-size: 2.5rem;
+    line-height: 4rem;
+  }
+}
+
+@media (min-width: 1595px) {
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .container-header {
+    width: 85%;
+  }
+  .container-header h2 {
+    font-size: 1.5rem;
+    line-height: 3rem;
+  }
+  .container-header h1 {
+    font-size: 3rem;
+    line-height: 6rem;
+  }
+  .cta {
+    width: 400px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+  select {
+    height: 60px;
+    font-size: 1.3rem;
+  }
+  label {
+    width: 28.3%;
+  }
+  .main-container-tournament {
+    width: 85%;
+    justify-content: center;
+  }
+  .container-tournament-mostPopular {
+    width: 90%;
+  }
+  .container-tournament-mostPopular h3 {
+    font-size: 32px;
+    padding-left: 100px;
+  }
+}

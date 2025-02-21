@@ -1,0 +1,41 @@
+/* SECTION MAIN */
+.main-container-organised-tournament {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.container-organised-tournament {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.box-organised-tournament {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+h1 {
+  width: 90%;
+  margin-left: auto;
+  padding-top: 80px;
+}
+
+
+
+@media (min-width: 768px) {
+  .container-organised-tournament {
+    width: 80%;
+  }
+}
+@media (min-width: 1024px) {
+  .container-organised-tournament {
+    width: 85%;
+  }
+}
+
+
+

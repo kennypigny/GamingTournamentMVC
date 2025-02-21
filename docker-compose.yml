@@ -1,0 +1,40 @@
+services:
+  php:
+    container_name: php-con
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: kenny-php-apache
+    volumes:
+      - ./src:/var/www/html/
+    ports:
+      - 85:80
+    networks:
+      - app-network
+
+  mysql:
+    container_name: mysql-con
+    image: mysql
+    volumes:
+      - ./database:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: pw
+      MYSQL_DATABASE: database
+    networks:
+      - app-network
+
+  phpmyadmin:
+    container_name: phpmyadmin-con
+    image: phpmyadmin
+    depends_on:
+      - mysql
+    environment:
+      PMA_HOST: mysql-con
+    ports:
+      - '8080:80'
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

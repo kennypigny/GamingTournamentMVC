@@ -1,0 +1,237 @@
+h1 {
+  width: 90%;
+  max-width: 400px;
+  padding: 110px 0 40px;
+  margin: 0 auto;
+}
+main {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+h2,
+h3 {
+  font-size: 1.5rem;
+}
+footer {
+  align-self: flex-end;
+  margin-top: 50px;
+}
+.container-form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+/* form 100% sinon quand  display:none sur les box casse la mise en page du formulaire*/
+form {
+  width: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+/* classe appelé dans JS */
+.hide-info {
+  display: none;
+}
+/* CONTAINER DES PARAMETRES INFORMATION GENERAL ET INFORMATION DU JEU*/
+
+.responsiv-param {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.container-parameter-form {
+  width: 90%;
+  height: auto;
+  margin-bottom: 20px;
+  background-color: #232f65;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: 1px solid black;
+  box-shadow: 0 0 15px rgb(0, 0, 0, 55%);
+}
+
+.title-container {
+  width: 100%;
+  height: 40px;
+  background-color: #28303f;
+  font-size: 18px;
+  font-weight: 500;
+  padding-left: 10px;
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.title-container img {
+  padding-right: 10px;
+}
+.general {
+  width: 90%;
+  height: auto;
+  padding: 20px 0;
+}
+
+/* ELEMENT DU CONTAINER INFORMATION GENERAL */
+
+input {
+  width: 100%;
+  height: 30px;
+  margin: 5px 0 15px;
+  color: black;
+  font-size: 1rem;
+  font-weight: 400;
+}
+.add-banner img {
+  width: 45%;
+}
+textarea {
+  width: 100%;
+  height: 120px;
+  color: black;
+  font-size: 1rem;
+  font-weight: 450;
+  margin-top: 10px;
+}
+
+/* ELEMENT DU CONTAINER INFORMATION DU JEU */
+
+select {
+  color: black;
+  width: 100%;
+  height: 30px;
+  margin: 5px 0 15px;
+}
+
+option {
+  color: black;
+}
+.size-player {
+  display: flex;
+}
+.size-player label:nth-child(2) {
+  text-align: center;
+  margin-left: 15px;
+}
+.size-player label:nth-child(3) {
+  text-align: center;
+  margin-left: 15px;
+}
+.size-player label:nth-child(2) input {
+  width: 25px;
+}
+.size-player label:nth-child(3) input {
+  width: 25px;
+}
+
+/* ELEMENT DU CONTAINER STRUCTURE DU TOURNOI */
+p {
+  margin-bottom: 10px;
+}
+#public {
+  width: 25px;
+  margin: 0 15px 0 0;
+}
+#private {
+  width: 25px;
+  margin: 0 15px 0 15px;
+}
+
+.container-radio {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+#auto-sub-on {
+  width: 25px;
+  margin: 0 15px 0 0;
+}
+#auto-sub-off {
+  width: 25px;
+  margin: 0 15px 0 35px;
+}
+
+/* BUTTON */
+.container-button-create {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.button-create {
+  font-size: 1.2rem;
+  width: 250px;
+  height: 50px;
+  margin: 30px 0 100px;
+  border-radius: 25px;
+  color: rgb(158, 219, 52);
+  background-color: #001c61;
+  box-shadow: 0 0 20px rgb(158, 219, 52);
+  transition: all 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.button-create:active {
+  transform: translateY(1px);
+  box-shadow: 0 0 10px 2px rgb(158, 219, 52);
+}
+
+@media (max-width: 767px) {
+  .container-parameter-form {
+    max-width: 400px;
+  }
+}
+@media (min-width: 768px) {
+  h1 {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0;
+    width: 79%;
+    max-width: none;
+
+    padding: 50px 0;
+  }
+  .dropdown {
+    display: none;
+  }
+  .container-form {
+    width: 85%;
+  }
+  form {
+    width: 80%;
+  }
+
+  .container-parameter-form {
+    width: 45%;
+    margin-left: 15px;
+  }
+  .container-parameter-form-structure {
+    width: 91% !important;
+  }
+  .responsiv-structure-info {
+    width: 45%;
+  }
+  #structure-tournament {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
+@media (min-width: 1024px) {
+  .container-parameter-form {
+    width: 45%;
+    margin-left: 15px;
+  }
+  form {
+    width: 85%;
+    max-width: 1450px;
+  }
+}
