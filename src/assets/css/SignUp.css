@@ -21,15 +21,12 @@ body {
   align-items: center;
 }
 /* MESSAGE D ERREUR VERIFICATION REGEX */
-.message-error-hide {
-  display: none;
+small {
+  display: block;
   font-size: 10px;
   color: red;
+}
 
-}
-.message-error-visible{
-  display: block;
-}
 
 /* CONTAINER SIGNUP */
 .containerSignUp {
@@ -67,7 +64,7 @@ form {
 }
 .formSignUpTop label + input {
   width: 100%;
-  margin: 0.8rem 0;
+  margin: 8px 0;
 }
 .infoPseudo {
   color: red;
@@ -98,14 +95,20 @@ a {
   width: 100%;
   text-decoration: none
 }
-.containerButton input a:visited {
+#submit:visited {
   color: rgb(158, 219, 52);
 }
 
-.containerButton input:hover {
+#submit:hover {
   transform: translateY(1px);
   box-shadow: 0 0 10px 2px rgb(158, 219, 52);
 }
+
+#submit:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 10px 2px rgb(158, 219, 52);
+}
+
 form p {
   width: 100%;
   text-align: center;

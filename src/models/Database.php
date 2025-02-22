@@ -7,9 +7,13 @@ class Database
     public function __construct()
     {
         try {
-            $this->db = new PDO('mysql:host=localhost;dbname=projet;charset=utf8', 'root', '');
-        } catch (\Throwable $th) {
-            die('Erreur : ' . $th->getMessage());
+            $this->db = new PDO('mysql:host=mysql-con;dbname=database;charset=utf8', 'root', 'pw', [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+            ]);
+            
+        } catch (Exception $e) {
+            die('Erreur : ' . $e->getMessage());
         }
     }
 }

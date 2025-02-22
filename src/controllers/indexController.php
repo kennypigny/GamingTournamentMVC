@@ -1,4 +1,3 @@
 <?php
-
-render('index');
+view('index');
 

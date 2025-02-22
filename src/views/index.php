@@ -253,7 +253,7 @@
 </main>
 
 <?php 
-render('default', true, [
+template('default', [
 	'title'   => 'Acceuil',
 	'css'     => 'index',
 	'content' => ob_get_clean(),

@@ -3,6 +3,7 @@ require 'utils/utils.php';
 require 'models/Database.php';
 
 
+
 $path = $_SERVER['REDIRECT_URL'];
 
 if ($path == '/') {

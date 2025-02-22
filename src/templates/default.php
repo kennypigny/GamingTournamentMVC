@@ -5,22 +5,22 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/assets/css/style.css">
-	<?php if (! empty($data['css'])) {?>
-		<link rel="stylesheet" href="/assets/css/<?php echo $data['css'] ?>.css">
+	<?php if (! empty($css)) {?>
+		<link rel="stylesheet" href="/assets/css/<?php echo $css ?>.css">
 	<?php }?>
-	<title>GamingTournament <?php echo isset($data['title']) ? ' - ' . $data['title'] : '' ?></title>
+	<title>GamingTournament <?php echo isset($title) ? ' - ' . $title : '' ?></title>
 </head>
 
 <body>
-	<?php render('ui/navbar', true)?>
+	<?php template('ui/navbar')?>
 
-	<?php echo $data['content'] ?>
+	<?php echo $content ?>
 
-	<?php render('ui/footer', true)?>
+	<?php template('ui/footer')?>
 
 	<script src="/assets/js/script.js"></script>
-	<?php if (! empty($data['js'])) {?>
-		<script src="/assets/js/<?php echo $data['js'] ?>.js"></script>
+	<?php if (! empty($js)) {?>
+		<script src="/assets/js/<?php echo $js ?>.js"></script>
 	<?php }?>
 </body>
 

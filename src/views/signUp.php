@@ -19,47 +19,46 @@
         <img src="./assets/img/General/gamingTournamentSignUp450x305.webp" alt="Logo" />
 
         <form method="POST">
-
             <div class="formSignUpTop">
 
                 <label for="nickname">Pseudo :<span class="infoPseudo">*Sera visible par les autres utilisateur</span>
                 </label>
                 <input type="text" name="nickname" id="nickname" placeholder="Pseudo" required />
-                <p class="message-error-hide letter-error-nickname">
-                    Uniquement les caractères a-z et A-Z
-                </p>
+                <small>
+                    <?= isset($error['nickname']) ? $error['nickname'] : ''; ?>
+                </small>
+
 
                 <label for="firstname">Nom :</label>
                 <input type="text" name="firstname" id="firstname" placeholder="Nom" required />
-                <p class="message-error-hide letter-error-firstname">
-                    Uniquement les caractères a-z et A-Z
-                </p>
+                <small>
+                    <?= isset($error['firstname']) ? $error['firstname'] : '';  ?>
+                </small>
 
                 <label for="lastname">Prénom :</label>
                 <input type="text" name="lastname" id="lastname" placeholder="Prénom" required />
-                <p class="message-error-hide letter-error-secondname">
-                    Uniquement les caractères a-z et A-Z
-                </p>
+                <small>
+                    <?= isset($error['lastname']) ? $error['lastname'] : ''; ?>
+                </small>
 
                 <label for="password">Mot de passe :</label>
                 <input class="password-character-requiered" type="password" name="password" id="password"
                     placeholder="**********" minlength="8" maxlength="24" required />
-                <p class="message-error-hide password-error">
-                    Le mot de passe doit contenir au moins 8 caractères, une
-                    majuscule, une minuscule, un chiffre et un caractère spécial.
-                </p>
+                <p >
+                    <?= isset($error['password']) ? $error['password'] : ''; ?>
+                </small>
+
 
                 <label for="confirmPassword">Confirmez mot de passe :</label>
                 <input type="password" name="confirmPassword" id="confirmPassword" placeholder="**********" required />
-                <p class="message-error-hide password-error-confirm">
-                    Le mot de passe ne correspond pas.
-                </p>
+                
 
                 <label for="email">Adresse Email :</label>
                 <input type="email" name="email" id="email" placeholder="ex : Adresse-Email@gmail.com" required />
-                <p class="message-error-hide email-error">
-                    Entrer une adresse email valide.
-                </p>
+                <small>
+                    <?= isset($error['email']) ? $error['email'] : ''; ?>
+                </small>
+
 
             </div>
 

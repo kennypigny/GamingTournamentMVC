@@ -1,2 +1,2 @@
 <?php
-render('login');
+view('login');

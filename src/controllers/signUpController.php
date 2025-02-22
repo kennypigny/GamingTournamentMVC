@@ -1,71 +1,53 @@
 <?php
 
-
 $error = [];
 
 if (! empty($_POST)) {
+    require 'models/User.php';
+    $user = new User();    
+   
+   try {
+    $user->setNickname($_POST['nickname']);
+   } catch (\Exception $e) {
+         $error['nickname'] = $e->getMessage();
+   }
 
+   try {
+    $user->setFirstname($_POST['firstname']);
+   } catch (\Exception $e) {
+         $error['firstname'] = $e->getMessage();
+   }
 
-    if (! empty($_POST['nickname'])) {
-        if ($_POST['nickname'] > 3 && $_POST['nickname'] < 15) {
-            if (preg_match('/^[a-zA-Z0-9]+$/', $_POST['nickname'])) {
-                # code...
-            } else {
-                $error['nickname'] = 'Votre pseudo doit contenir uniquement des lettres ou des chiffres';
-            }
-        } else {
-            $error['nickname'] = 'Votre pseudo doit contenir entre 3 et 15 caractéres';
-        }
-    } else {
-        $error['nickname'] = 'Veuillez renseigner un pseudo';
+   try {
+    $user->setLastname($_POST['lastname']);
+   } catch (\Exception $e) {
+         $error['lastname'] = $e->getMessage();
+   }
+
+   try {
+    $user->setEmail($_POST['email']);
+    } catch (\Exception $e) {
+            $error['email'] = $e->getMessage();
     }
 
-    if (! empty($_POST['firstname'])) {
-        if (preg_match('/^[a-zA-Z]+$/', $_POST['firstname'])) {
-            # code...
-        }else {
-            $error['firstname'] = 'Votre nom doit contenir uniquement des lettres';
-        }
-    } else {
-        $error['firstname'] = 'Veuillez renseigner un nom';
-    }
-
-    if (! empty($_POST['lastname'])) {
-        if (preg_match('/^[a-zA-Z]+$/', $_POST['lastname'])) {
-            # code...
-        }else {
-            $error['lastname'] = 'Votre prénom doit contenir uniquement des lettres';
-        }
-    } else {
-        $error['lastname'] = 'Veuillez renseigner un prénom';
-    }
-
-    if (! empty($_POST['password'])) {
-        if (strlen($_POST['password']) >= 8) {
-            # code...
-        }else {
-            $error['password'] = 'Votre mot de passe doit contenir au moins 8 caractéres';
-        }
-    } else {
-        $error['password'] = 'Veuillez renseigner un mot de passe';
-    }
-
-    if (! empty($_POST['email'])) {
-        if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-            # code...
-        }else {
-            $error['email'] = 'Veuillez renseigner un email valide';
-        }
-    } else {
-        $error['email'] = 'Veuillez confirmer votre email';
-    }
-
+    try {
+        $user->setPassword($_POST['password']);
+    } catch (\Exception $e) {
+            $error['password'] = $e->getMessage();
+    }    
+    
+    
+    //envoi des données dans la bdd si aucune erreur
     if (empty($error)) {
-        # code...
-    }
 
+        if ($user->register()) {
+            header('Location: /');
+            exit();
+        } else {
+            $error['global'] = 'Echec de l\'inscription';
+        }
+    }
 }
 
-render('signUp', false, [
-    'error' => $error
-]);
+view('signUp', ['error' => $error]);
+?>

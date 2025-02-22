@@ -1,1 +1,2 @@
-<?php render('profil') ?>
+<?php 
+view('profil');

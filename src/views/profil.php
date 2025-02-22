@@ -407,7 +407,7 @@
       </div>
     </main>
 
-    <?php render('default', true,[
+    <?php template('default',[
         'title' => 'Profil',
         'css' => 'profil',
         'js' => 'profil',
