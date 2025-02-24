@@ -130,7 +130,7 @@
       </div>
     </main>
     <?php 
-    render('default', true, [
+    template('default', [
         'title' => 'Mes tournois',
         'css' => '/tournament/myTournaments',
         'content' => ob_get_clean()

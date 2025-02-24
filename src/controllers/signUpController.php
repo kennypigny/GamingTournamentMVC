@@ -1,7 +1,8 @@
 <?php
 
 $error = [];
-
+ 
+//Process form submission for user registration.
 if (! empty($_POST)) {
     require 'models/User.php';
     $user = new User();    
@@ -37,7 +38,7 @@ if (! empty($_POST)) {
     }    
     
     
-    //envoi des données dans la bdd si aucune erreur
+    //Send data to database if there are no errors.
     if (empty($error)) {
 
         if ($user->register()) {

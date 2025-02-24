@@ -1,2 +1,2 @@
 <?php 
-render('tournament/joined');
+view('tournament/joined');

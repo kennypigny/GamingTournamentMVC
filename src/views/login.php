@@ -27,20 +27,21 @@
       </div>
 
       <div class="containerFormLogin">
-        <form action="" method="">
-          <label for="userLogin">Adresse E-mail :</label>
+        <form method="POST">
+          <label for="email">Adresse E-mail :</label>
           <input
             type="text"
-            name="user"
-            id="userLogin"
+            name="email"
+            id="email"
             placeholder="Adresse E-mail"
             required
           />
-          <label for="passwordLogin">Mot de passe :</label>
+          <small><?php isset($error['global']) ? $error['global'] : ''; ?></small>
+          <label for="password">Mot de passe :</label>
           <input
             type="password"
-            name="passwordLogin"
-            id="passwordLogin"
+            name="password"
+            id="password"
             placeholder="Mot de passe"
             required
           />

@@ -48,20 +48,30 @@
 	</ul>
 	<ul>
 		<li class="divider-nav"></li>
+	<?php if (empty($_SESSION['email'])) { ?>
 		<li class="block">
 			<img src="/assets/img/General/user.png" alt="Icone connection" />
-			<a href="/Login">Connection</a>
+			<a href="/login">Connection</a>
 		</li>
 
 		<li>
 			<img
 				src="/assets/img/General/add-user.png"
 				alt="Icone inscription" />
-			<a href="/SignUp">Inscription</a>
+			<a href="/signUp">Inscription</a>
+		</li>		
+	<?php	
+	}else { ?>
+		<li class="block">
+			<img src="/assets/img/General/user.png" alt="Icone profil" />
+			<a href="/myProfil"> Mon profil <span>(<?= $_SESSION['nickname'] ?>)</span> </a>
 		</li>
 		<li class="block">
 			<img src="/assets/img/General/user.png" alt="Icone profil" />
-			<a href="/profil"> Mon profil</a>
+			<a href="/logout">Déconnexion</a>
 		</li>
+	<?php } ?>
+		
+		
 	</ul>
 </nav>

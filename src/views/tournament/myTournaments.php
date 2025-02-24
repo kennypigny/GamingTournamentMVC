@@ -178,7 +178,7 @@
       </div>
     </main>
     <?php 
-        render('default', true, [
+        template('default', [
             'title'   => 'Création de tournoi',
             'css'     => 'tournament/myTournaments',
             'content' => ob_get_clean(),

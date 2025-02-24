@@ -1,5 +1,40 @@
 <?php ob_start() ?>
-<main>
+
+<header>
+      <!-- PHOTO DE PROFIL ET BANNIERE QU ON PEUX CHANGER AU CLICK -->
+      <div class="container-banner-photo">
+        <div class="banner-photo-profil">
+          <div class="photo">
+            <img
+              id="photo-profil"
+              src="./assets/img/General/addPhoto.jpg"
+              alt="Photo de profil"
+            />
+            <input
+              type="file"
+              id="upload-photo"
+              name="upload-photo"
+              accept="images/*"
+            />
+          </div>
+          <div class="banner">
+            <img
+              id="banner-profil"
+              src="./assets/img/General/addPhoto612x612.jpg"
+              alt="Bannière de profil"
+            />
+            <input
+              type="file"
+              id="upload-banner"
+              name="upload-banner"
+              accept="images/*"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- DEBUT DU MAIN -->
+    <main>
       <!-- CONTAINER PRINCIPAL QUI CONTIENT GENERAL / CHANGEMENT DE MOT DE PASSE et D EMAIL / SUPRESSION DU COMPTE -->
 
       <div class="container-info-profil">
@@ -407,9 +442,9 @@
       </div>
     </main>
 
-    <?php template('default',[
-        'title' => 'Profil',
-        'css' => 'profil',
-        'js' => 'profil',
-        'content' => ob_get_clean()
-    ]) ?>
+<?php template('default', [
+  'title' => 'Mon Profil',
+  'css' => 'myProfil',
+  'js' => 'myProfil',
+  'content' => ob_get_clean()
+]) ?>

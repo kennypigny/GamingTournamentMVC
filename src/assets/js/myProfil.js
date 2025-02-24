@@ -50,8 +50,7 @@ const boxChangeMail = document.querySelector(".box-change-mail");
 const iconDelete = document.querySelector(".dropdown-delete-account");
 const boxDelete = document.querySelector(".box-delete");
 
-const iconHistoryProfil = document.querySelector(".dropdown-history-profil");
-const boxHistoryProfil = document.querySelector(".box-history-profil");
+
 
 iconDropdownProfil.addEventListener("click", () => {
   boxGeneral.classList.toggle("hide-box");
@@ -65,9 +64,7 @@ iconChangeMail.addEventListener("click", () => {
 iconDelete.addEventListener("click", () => {
   boxDelete.classList.toggle("hide-box");
 });
-iconHistoryProfil.addEventListener("click", () => {
-  boxHistoryProfil.classList.toggle("hide-box");
-});
+
 
 // VERIFICATION GENERAL
 const onlyLetterRegex = /^[\p{L}]+$/u;

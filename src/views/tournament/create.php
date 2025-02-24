@@ -17,24 +17,24 @@
 							class="dropdown" />
 					</div>
 					<div class="general" id="info-general">
-						<?php render('form/input', true, [
+						<?php template('form/input', [
                                 'displayName' => 'Nom du tournoi :',
                                 'name'        => 'name-tournament',
                         ])?>
 
-						<?php render('form/input', true, [
+						<?php template('form/input', [
                                 'displayName' => 'Bannière : <span>(.jpeg .jpg .webp)</span>',
                                 'name'        => 'banner',
                                 'type'        => 'file',
                                 'accept'      => 'images/*',
                         ])?>
 
-						<?php render('form/input', true, [
+						<?php template('form/input', [
                                 'displayName' => 'Discord :',
                                 'name'        => 'discord',
                         ])?>
 
-						<?php render('form/input', true, [
+						<?php template('form/input', [
                                 'displayName' => 'Description :',
                                 'name'        => 'description',
                                 'textarea'    => true,
@@ -190,7 +190,7 @@
 </main>
 
 <?php
-    render('default', true, [
+    template('default', [
         'title'   => 'Création de tournoi',
         'css'     => 'tournament/create',
         'js'      => 'tournament/create',

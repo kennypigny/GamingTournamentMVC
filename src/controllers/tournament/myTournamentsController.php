@@ -1,3 +1,3 @@
 <?php   
-render('tournament/myTournaments');
+view('tournament/myTournaments');
 

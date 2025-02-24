@@ -1,4 +1,4 @@
-<?php ob_start() ?>
+<?php ob_start(); ?>
 
 <header>
 	<!--  BANNER SLOGAN & CTA mobile changement de banniere et mise en page avec @média -->
@@ -11,9 +11,17 @@
 					atteignez les sommets ! Vos victoires commencent ici.
 				</h2>
 				<div class="container-cta-header">
-					<button class="cta">
-						<a href="./SignUp.html">Inscrivez-vous dès maintenant</a>
-					</button>
+					<?php if (empty($_SESSION['email'])) { ?>
+						<button class="cta">
+							<a href="./SignUp.html">Inscrivez-vous dès maintenant</a>
+						</button>
+					<?php
+					} else { ?>
+						<div class="welcome">
+							<p>Bonjour, <?= $_SESSION['email'] ?> !</p>
+						</div>
+
+					<?php } ?>
 				</div>
 
 				<img
@@ -140,7 +148,7 @@
 						T1 tournament | 16 teams | direct elimination | Cashprize 2500RP
 					</h4>
 					<div class="info-date-tournament">
-									<img
+						<img
 							src="./assets/img/General/schedule.png"
 							alt="Icone calendrier" />
 						<p>Tue dec 24</p>
@@ -252,10 +260,10 @@
 	</div>
 </main>
 
-<?php 
+<?php
 template('default', [
 	'title'   => 'Acceuil',
 	'css'     => 'index',
 	'content' => ob_get_clean(),
 ]);
- ?>
+?>
