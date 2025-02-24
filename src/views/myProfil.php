@@ -51,38 +51,39 @@
                 />
               </div>
               <div class="box-general box-dropdown">
-                <label for="firstname-user">Nom : </label>
+                <label for="firstname">Nom : <?= var_dump($_SESSION['firstname']); ?></label>
                 <input
-                  name="firstname-user"
-                  id="firstname-user"
+                  name="firstname"
+                  id="firstname"
                   type="text"
+                  placeholder="" 
                   required
                 />
                 <p class="message-error letter-error-firstname">
                   Le nom doit contenir seulement les caractères a-z et A-Z
                 </p>
-                <label for="secondname-user">Prénom : </label>
+                <label for="lastname">Prénom : </label>
                 <input
-                  name="secondname-user"
-                  id="secondname-user"
+                  name="lastname"
+                  id="lastname"
                   type="text"
                   required
                 />
                 <p class="message-error letter-error-secondname">
                   Le prénom doit contenir seulement les caractères a-z et A-Z
                 </p>
-                <label for="nickname-user">Pseudo : </label>
+                <label for="nickname">Pseudo : </label>
                 <input
-                  name="nickname-user"
-                  id="nickname-user"
+                  name="nickname"
+                  id="nickname"
                   type="text"
                   required
                 />
                 <p class="message-error letter-error-nickname">
                   Le pseudo doit contenir seulement les caractères a-z , A-Z
                 </p>
-                <label for="country-user">Pays : </label>
-                <select name="country-user" id="country-user" required>
+                <label for="country">Pays : </label>
+                <select name="country" id="country" required>
                   <option value="" selected>--Choisissez un pays--</option>
                   <option value="france">France</option>
                   <option value="espagne">Espagne</option>

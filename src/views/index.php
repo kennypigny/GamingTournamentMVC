@@ -18,7 +18,7 @@
 					<?php
 					} else { ?>
 						<div class="welcome">
-							<p>Bonjour, <?= $_SESSION['email'] ?> !</p>
+							<p>Bonjour, <?= $_SESSION['nickname'] ?> !</p>
 						</div>
 
 					<?php } ?>

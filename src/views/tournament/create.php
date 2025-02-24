@@ -1,4 +1,4 @@
-<?php ob_start()?>
+<?php ob_start() ?>
 
 <main>
 	<h1>Création d'un tournoi :</h1>
@@ -17,29 +17,29 @@
 							class="dropdown" />
 					</div>
 					<div class="general" id="info-general">
-						<?php template('form/input', [
-                                'displayName' => 'Nom du tournoi :',
-                                'name'        => 'name-tournament',
-                        ])?>
+						<label for="name-tournament"> Nom du tournoi : </label>
+						<input
+							name="name-tournament"
+							id="name-tournament"
+							type="text"
+							required />
 
-						<?php template('form/input', [
-                                'displayName' => 'Bannière : <span>(.jpeg .jpg .webp)</span>',
-                                'name'        => 'banner',
-                                'type'        => 'file',
-                                'accept'      => 'images/*',
-                        ])?>
+						<label for="banner">Bannière : <span>(.jpeg .jpg .webp)</span></label>
+						<input
+							type="file"
+							id="banner"
+							name="banner"
+							accept="images/*" />
 
-						<?php template('form/input', [
-                                'displayName' => 'Discord :',
-                                'name'        => 'discord',
-                        ])?>
+						<label for="discord">Discord :</label>
+						<input name="discord" id="discord" type="text" />
 
-						<?php template('form/input', [
-                                'displayName' => 'Description :',
-                                'name'        => 'description',
-                                'textarea'    => true,
-                        ])?>
-
+						<label for="description">Description :</label>
+						<textarea
+							name="description"
+							id="description"
+							required>
+						</textarea>
 					</div>
 				</div>
 				<!-- FIN CONTAINER INFORMATION GENERAL -->
@@ -54,60 +54,52 @@
 							class="dropdown" />
 					</div>
 					<div class="general" id="info-game">
-						<label for="games-select">Choix du jeu :
-							<select name="games-select" id="games-select" required>
-								<option value="" selected>--Choisissez un jeu--</option>
-								<option value="lol">League of legend</option>
-								<option value="fifa">Fifa</option>
-								<option value="fortnite">Fortnite</option>
-								<option value="wow">World of Warcraft</option>
-								<option value="hearthstone">Hearthstone</option>
-							</select>
-						</label>
-						<label for="region-select">Choix de la région :
-							<select name="region-select" id="region-select" required>
-								<option value="" selected>--Choisissez une region--</option>
-								<option value="europe">Europe</option>
-								<option value="asie">Asie</option>
-								<option value="amnorth">Amérique du nord</option>
-								<option value="amsouth">Amérique du sud</option>
-							</select>
-						</label>
-						<label for="plateform-select">Choix de la plateforme :
-							<select
-								name="palteform-select"
-								id="plateform-select"
-								required>
-								<option value="" selected>
-									--Choisissez une plateforme--
-								</option>
-								<option value="ps5">PS5</option>
-								<option value="computer">PC</option>
-								<option value="crossplay">Crossplay</option>
-								<option value="switch">Nintendo Switch</option>
-								<option value="xbox">Xbox série X/S</option>
-							</select>
-						</label>
+						<label for="games-select">Choix du jeu : </label>
+						<select name="games-select" id="games-select" required>
+							<option value="" selected>--Choisissez un jeu--</option>
+							<option value="lol">League of legend</option>
+							<option value="fifa">Fifa</option>
+							<option value="fortnite">Fortnite</option>
+							<option value="wow">World of Warcraft</option>
+							<option value="hearthstone">Hearthstone</option>
+						</select>
+						<label for="region-select">Choix de la région :</label>
+						<select name="region-select" id="region-select" required>
+							<option value="" selected>--Choisissez une region--</option>
+							<option value="europe">Europe</option>
+							<option value="asie">Asie</option>
+							<option value="amnorth">Amérique du nord</option>
+							<option value="amsouth">Amérique du sud</option>
+						</select>
+						<label for="plateform-select">Choix de la plateforme :</label>
+						<select
+							name="palteform-select"
+							id="plateform-select"
+							required>
+							<option value="" selected>
+								--Choisissez une plateforme--
+							</option>
+							<option value="ps5">PS5</option>
+							<option value="computer">PC</option>
+							<option value="crossplay">Crossplay</option>
+							<option value="switch">Nintendo Switch</option>
+							<option value="xbox">Xbox série X/S</option>
+						</select>
 						<div class="size-player">
-							<label for="size">Taille :
-								<input name="size" id="size" type="text" required />
-							</label>
-							<label for="players">
-								Joueurs
-								<input
-									type="radio"
-									name="participant"
-									id="players"
-									value="players" />
-							</label>
-							<label for="teams">
-								Equipes
-								<input
-									type="radio"
-									name="participant"
-									id="teams"
-									value="teams" />
-							</label>
+							<label for="size">Taille :</label>
+							<input name="size" id="size" type="text" required />
+							<label for="players"> Joueurs </label>
+							<input
+								type="radio"
+								name="participant"
+								id="players"
+								value="players" />
+							<label for="teams">Equipes</label>
+							<input
+								type="radio"
+								name="participant"
+								id="teams"
+								value="teams" />
 						</div>
 					</div>
 				</div>
@@ -126,20 +118,18 @@
 				</div>
 				<div class="general" id="structure-tournament">
 					<div class="responsiv-structure-info">
-						<label for="date-tournament">Date :
-							<input
-								type="date"
-								id="date-tournament"
-								name="date-tournament"
-								required />
-						</label>
-						<label for="format-select">Choix de la plateforme :
-							<select name="format-select" id="format-select">
-								<option value="" selected>--Choisissez un format--</option>
-								<option value="elim-direct">Elimination direct</option>
-								<option value="round-robin">Round-robin</option>
-							</select>
-						</label>
+						<label for="date-tournament">Date :</label>
+						<input
+							type="date"
+							id="date-tournament"
+							name="date-tournament"
+							required />
+						<label for="format-select">Choix de la plateforme :</label>
+						<select name="format-select" id="format-select">
+							<option value="" selected>--Choisissez un format--</option>
+							<option value="elim-direct">Elimination direct</option>
+							<option value="round-robin">Round-robin</option>
+						</select>
 						<p>Type de tournois</p>
 						<div class="container-radio">
 							<input
@@ -190,10 +180,10 @@
 </main>
 
 <?php
-    template('default', [
-        'title'   => 'Création de tournoi',
-        'css'     => 'tournament/create',
-        'js'      => 'tournament/create',
-        'content' => ob_get_clean(),
+template('default', [
+	'title'   => 'Création de tournoi',
+	'css'     => 'tournament/create',
+	'js'      => 'tournament/create',
+	'content' => ob_get_clean(),
 ]);
 ?>

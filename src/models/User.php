@@ -12,8 +12,6 @@ class User extends Database
     /**
      * Validate and set the nickname (pseudo)
      * Must be 3-15 characters, only letters and numbers
-     * Clean and throws an exception if invalid
-     *
      * @param string $value The nickname to set
      * @throws Exception If validation fails
      */
@@ -36,9 +34,10 @@ class User extends Database
         }
     }
     /**
-     * Get the nickname (pseudo) of a user by email
+     * Get the nickname (pseudo) of a user 
      * @param string $email The email of the user
      * @return array The user's nickname
+     * @return null If the user does not exist
      */
     public function getNickname($email)
     {
@@ -52,7 +51,6 @@ class User extends Database
     /**
      * Validate and set the firstname
      * Must be only letters
-     * Clean and throws an exception if invalid
      * @param string $value The firstname to set
      * @throws Exception If validation fails
      */
@@ -70,20 +68,21 @@ class User extends Database
         }
     }
     /**
-     * Get the firstname of a user by email.
+     * Get the firstname of a user .
      * @param string $email The email of the user.
      * @return array The user's firstname.
+     * @return null If the user does not exist.
      */
     public function getFirstname($email)
     {
         $query = $this->db->prepare("SELECT firstname FROM tnmt_users WHERE email = :email");
         $query->execute(['email' => $email]);
-        return $query->fetch(PDO::FETCH_ASSOC);
+        $user = $query->fetch(PDO::FETCH_ASSOC);
+        return $user ? $user['firstname'] : null;
     }
     /**
      * Validate and set the lastname.
      * Must be only letters.
-     * Clean and throws an exception if invalid.
      * @param string $value The lastname to set.
      * @throws Exception If validation fails.
      */
@@ -101,22 +100,24 @@ class User extends Database
         }
     }
     /**
-     * Get the lastname of a user by email.
+     * Get the lastname of a user
      * @param string $email The email of the user.
      * @return array The user's lastname.
+     * @return null If the user does not exist.
      */
     public function getLastname($email)
     {
         $query = $this->db->prepare("SELECT lastname FROM tnmt_users WHERE email = :email");
         $query->execute(['email' => $email]);
-        return $query->fetch(PDO::FETCH_ASSOC);
+        
+        $user = $query->fetch(PDO::FETCH_ASSOC);
+        return $user ? $user['lastname'] : null;
     }
     
     /**
      * Validate and set the password
      * Must be at least 8 characters
      * Hash using `password_hash()`
-     * Clean and throws an exception if invalid
      * @param string $value The password to set
      * @throws Exception If validation fails
      */
@@ -134,9 +135,10 @@ class User extends Database
         }
     }
     /**
-     * Get the password of a user by email
+     * Get the password of a user 
      * @param string $email The email of the user
      * @return array The user's password
+     * @return string 'null' If the user does not exist
      */
     public function getPassword($email)
     {
@@ -146,7 +148,11 @@ class User extends Database
         $user = $query->fetch(PDO::FETCH_ASSOC);
         return $user ? $user['password'] : 'null';
     }
-
+    /**
+     * @param string $email The email of the user
+     * @param string $password The password to verify
+     * @return bool True if the password is correct, false otherwise
+     */
     public function verifyPassword($email, $password)
     {
         $hashedPassword = $this->getPassword($email);
@@ -157,7 +163,12 @@ class User extends Database
     
         return password_verify($password, $hashedPassword);
     }
-
+    /** 
+     * Validate and set the email
+     * Must be a valid email
+     * @param string $value The email to set
+     * @throws Exception If validation fails
+     */
     public function setEmail($value)
     {
         if (! empty($value)) {
@@ -173,6 +184,12 @@ class User extends Database
             throw new Exception('Veuillez renseigner un email');
         }
     }
+    /**
+     * Get the email of a user 
+     * @param string $email The email of the user
+     * @return array The user's email
+     * @return null If the user does not exist
+     */
     public function getEmail($email)
     {
         $query = $this->db->prepare("SELECT email FROM tnmt_users WHERE email = :email");
@@ -181,11 +198,26 @@ class User extends Database
         $user = $query->fetch(PDO::FETCH_ASSOC);
         return $user ? $user['email'] : null ;
     }
+    /**
+     * Get the role of user 
+     * @param string $email The email of the user
+     * @return array The user's id
+     */
+    public function getRole($email)
+    {
+        $query = $this->db->prepare("SELECT id_role FROM tnmt_users WHERE email = :email");
+        $query->execute(['email' => $email]);
 
+        $user = $query->fetch(PDO::FETCH_ASSOC);
+        return $user ? $user['id_role'] : null ;
+        
+        
+    }
 
     /**
-     * Register user in database
-     * 
+     * Register a new user
+     * @return bool True if the user was registered, false otherwise
+     * @throws Exception If the email is already used
      */
     public function register()
     {

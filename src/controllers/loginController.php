@@ -10,6 +10,9 @@ if (!isset($_POST['email']) || !isset($_POST['password'])) {
     if ($user->verifyPassword($_POST['email'], $_POST['password'])) {
         $_SESSION['email'] = $_POST['email'];
         $_SESSION['nickname'] = $user->getNickname($_POST['email']);
+        $_SESSION['firstname'] = $user->getFirstname($_POST['email']);
+        $_SESSION['lastname'] = $user->getLastname($_POST['email']);
+        $_SESSION['id'] = $user->getRole($_POST['email']);
         header('Location: /');
         exit();
     } else {
