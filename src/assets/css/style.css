@@ -7,7 +7,6 @@
   font-family: "Roboto Condensed", sans-serif;
   font-optical-sizing: auto;
   color: #f2f2f2;
-  text-shadow: 0 0 10px rgb(0, 0, 0);
 }
 
 body {
@@ -16,6 +15,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   text-shadow: 1px 1px 10px rgb(0, 0, 0);
+  text-shadow: 0 0 10px rgb(0, 0, 0);
 }
 header {
   width: 100%;
@@ -24,6 +24,7 @@ header {
 footer {
   margin-top: 100px;
 }
+
 .block {
   display: block;
   width: 100%;
@@ -229,7 +230,6 @@ footer p {
 
 footer a {
   margin-bottom: 20px;
-  margin-right: 10px;
 }
 
 .copyright {

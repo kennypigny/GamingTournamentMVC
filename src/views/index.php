@@ -13,7 +13,7 @@
 				<div class="container-cta-header">
 					<?php if (empty($_SESSION['email'])) { ?>
 						<button class="cta">
-							<a href="./SignUp.html">Inscrivez-vous dès maintenant</a>
+							<a href="./SignUp">Inscrivez-vous dès maintenant</a>
 						</button>
 					<?php
 					} else { ?>

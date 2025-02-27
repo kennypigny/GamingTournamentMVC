@@ -1,6 +1,6 @@
 <?php
-require 'models/User.php';
 session_start();
+require 'models/User.php';
 
 $user = new User();
 
@@ -13,6 +13,7 @@ if (!isset($_POST['email']) || !isset($_POST['password'])) {
         $_SESSION['firstname'] = $user->getFirstname($_POST['email']);
         $_SESSION['lastname'] = $user->getLastname($_POST['email']);
         $_SESSION['id'] = $user->getRole($_POST['email']);
+        $_SESSION['country'] = $user->getCountry($_POST['email']);
         header('Location: /');
         exit();
     } else {

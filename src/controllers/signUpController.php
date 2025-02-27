@@ -1,5 +1,4 @@
 <?php
-
 $error = [];
  
 //Process form submission for user registration.
@@ -51,4 +50,3 @@ if (! empty($_POST)) {
 }
 
 view('signUp', ['error' => $error]);
-?>

@@ -8,7 +8,10 @@ class User extends Database
     private $email;
     private $nickname;
     private $password;
+    private $country;
 
+
+    //SETTER ET GETTER
     /**
      * Validate and set the nickname (pseudo)
      * Must be 3-15 characters, only letters and numbers
@@ -41,10 +44,10 @@ class User extends Database
      */
     public function getNickname($email)
     {
-        $query = $this->db->prepare("SELECT pseudo FROM tnmt_users WHERE email = :email");
-        $query->execute(['email' => $email]);
+        $stmt = $this->db->prepare("SELECT pseudo FROM tnmt_users WHERE email = :email");
+        $stmt->execute(['email' => $email]);
 
-        $user = $query->fetch(PDO::FETCH_ASSOC);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
         return $user ? $user['pseudo'] : null;
     }
 
@@ -75,9 +78,9 @@ class User extends Database
      */
     public function getFirstname($email)
     {
-        $query = $this->db->prepare("SELECT firstname FROM tnmt_users WHERE email = :email");
-        $query->execute(['email' => $email]);
-        $user = $query->fetch(PDO::FETCH_ASSOC);
+        $stmt = $this->db->prepare("SELECT firstname FROM tnmt_users WHERE email = :email");
+        $stmt->execute(['email' => $email]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
         return $user ? $user['firstname'] : null;
     }
     /**
@@ -107,13 +110,13 @@ class User extends Database
      */
     public function getLastname($email)
     {
-        $query = $this->db->prepare("SELECT lastname FROM tnmt_users WHERE email = :email");
-        $query->execute(['email' => $email]);
-        
-        $user = $query->fetch(PDO::FETCH_ASSOC);
+        $stmt = $this->db->prepare("SELECT lastname FROM tnmt_users WHERE email = :email");
+        $stmt->execute(['email' => $email]);
+
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
         return $user ? $user['lastname'] : null;
     }
-    
+
     /**
      * Validate and set the password
      * Must be at least 8 characters
@@ -142,10 +145,10 @@ class User extends Database
      */
     public function getPassword($email)
     {
-        $query = $this->db->prepare("SELECT password FROM tnmt_users WHERE email = :email");
-        $query->execute(['email' => $email]);
+        $stmt = $this->db->prepare("SELECT password FROM tnmt_users WHERE email = :email");
+        $stmt->execute(['email' => $email]);
 
-        $user = $query->fetch(PDO::FETCH_ASSOC);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
         return $user ? $user['password'] : 'null';
     }
     /**
@@ -158,9 +161,9 @@ class User extends Database
         $hashedPassword = $this->getPassword($email);
 
         if (!is_string($hashedPassword)) {
-            return false; // L'utilisateur n'existe pas ou problème avec la récupération du mot de passe
+            return false;
         }
-    
+
         return password_verify($password, $hashedPassword);
     }
     /** 
@@ -192,11 +195,11 @@ class User extends Database
      */
     public function getEmail($email)
     {
-        $query = $this->db->prepare("SELECT email FROM tnmt_users WHERE email = :email");
-        $query->execute(['email' => $email]);
-        
-        $user = $query->fetch(PDO::FETCH_ASSOC);
-        return $user ? $user['email'] : null ;
+        $stmt = $this->db->prepare("SELECT email FROM tnmt_users WHERE email = :email");
+        $stmt->execute(['email' => $email]);
+
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $user ? $user['email'] : null;
     }
     /**
      * Get the role of user 
@@ -205,14 +208,39 @@ class User extends Database
      */
     public function getRole($email)
     {
-        $query = $this->db->prepare("SELECT id_role FROM tnmt_users WHERE email = :email");
-        $query->execute(['email' => $email]);
+        $stmt = $this->db->prepare("SELECT id_role FROM tnmt_users WHERE email = :email");
+        $stmt->execute(['email' => $email]);
 
-        $user = $query->fetch(PDO::FETCH_ASSOC);
-        return $user ? $user['id_role'] : null ;
-        
-        
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $user ? $user['id_role'] : null;
     }
+    /**
+     * Validate and set the country
+     * @param string $value The country to set
+     * @throws Exception If validation fails
+     */
+    public function setCountry($value)
+    {
+        if (! empty($value)) {
+            $this->country = htmlspecialchars($value);
+        } else {
+            throw new Exception('Veuillez renseigner un pays');
+        }
+    }
+    /**
+     * Get the country of a user
+     * @param string $email The email of the user
+     * @return array The user country
+     */
+    public function getCountry($email)
+    {
+        $stmt = $this->db->prepare("SELECT country FROM tnmt_users WHERE email = :email");
+        $stmt->execute(['email' => $email]);
+
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $user ? $user['country'] : null;
+    }
+
 
     /**
      * Register a new user
@@ -225,16 +253,101 @@ class User extends Database
             throw new Exception('Cet email est déjà utilisé.');
         }
 
-        $queryExecute = $this->db->prepare("INSERT INTO `tnmt_users`(`firstname`, `lastname`, `email`, `pseudo`, `password`,`date_created_account`, `id_role`) 
+        $stmt = $this->db->prepare("INSERT INTO `tnmt_users`(`firstname`, `lastname`, `email`, `pseudo`, `password`,`date_created_account`, `id_role`) 
         VALUES (:firstname, :lastname, :email, :pseudo, :password, NOW(), 1)");
 
-        $queryExecute->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
-        $queryExecute->bindValue(':lastname', $this->lastname, PDO::PARAM_STR);
-        $queryExecute->bindValue(':email', $this->email, PDO::PARAM_STR);
-        $queryExecute->bindValue(':pseudo', $this->nickname, PDO::PARAM_STR);
-        $queryExecute->bindValue(':password', $this->password, PDO::PARAM_STR);
+        $stmt->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
+        $stmt->bindValue(':lastname', $this->lastname, PDO::PARAM_STR);
+        $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
+        $stmt->bindValue(':pseudo', $this->nickname, PDO::PARAM_STR);
+        $stmt->bindValue(':password', $this->password, PDO::PARAM_STR);
 
 
-        return $queryExecute->execute();
+        return $stmt->execute();
+    }
+
+    /**
+     * Modify the user's information
+     * @param string $email The email of the user
+     * @return bool True if the user's information was modified
+     * @throws Exception If the email is already used
+     */
+    public function modify($email)
+    {
+
+        if (!empty($_POST['firstname'])) {
+            $stmt = $this->db->prepare("UPDATE `tnmt_users` SET `firstname` = :firstname WHERE `email` = :email");
+            $stmt->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
+            $stmt->bindValue(':email', $email);
+
+            return $stmt->execute();
+        }
+
+        if (!empty($_POST['lastname'])) {
+            $stmt = $this->db->prepare("UPDATE `tnmt_users` SET `lastname` = :lastname WHERE `email` = :email");
+            $stmt->bindValue(':lastname', $this->lastname, PDO::PARAM_STR);
+            $stmt->bindValue(':email', $email);
+
+            return $stmt->execute();
+        }
+
+        if (!empty($_POST['nickname'])) {
+            $stmt = $this->db->prepare("UPDATE `tnmt_users` SET `pseudo` = :pseudo WHERE `email` = :email");
+            $stmt->bindValue(':pseudo', $this->nickname, PDO::PARAM_STR);
+            $stmt->bindValue(':email', $email);
+
+            return $stmt->execute();
+        }
+
+        if (!empty($_POST['country'])) {
+            $stmt = $this->db->prepare("UPDATE `tnmt_users` SET `country` = :country WHERE `email` = :email");
+            $stmt->bindValue(':country', $this->country, PDO::PARAM_STR);
+            $stmt->bindValue(':email', $email);
+
+            return $stmt->execute();
+        }
+        if (!empty($_POST['password'])) {
+            $stmt = $this->db->prepare("UPDATE `tnmt_users` SET `password` = :password WHERE `email` = :email");
+            $stmt->bindValue(':password', $this->password, PDO::PARAM_STR);
+            $stmt->bindValue(':email', $email);
+
+            return $stmt->execute();
+        }
+    }
+
+    /**
+     * Get all users from the tnmt_users table.
+     * @return array array containing all users.
+     */
+    public function getUsers()
+    {
+        $stmt = $this->db->prepare("SELECT * FROM tnmt_users ");
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    /**
+     * Deletes a user from the tnmt_users table based on their ID.
+     * @param string $id name of button user with ID user in value.
+     * @return bool Returns true on success, false on failure.
+     */
+    public function deleteUser($id)
+    {
+        $stmt = $this->db->prepare("DELETE FROM tnmt_users WHERE id_users = :id_users");
+        $stmt->bindValue(':id_users', $id, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
+
+    /**
+     * Counts the total number of users in the tnmt_users table.
+     * @return array Returns an associative array containing the count of users with the key 'user_count'.
+     */
+    public function countUser()
+    {
+        $stmt = $this->db->prepare("SELECT COUNT(*) AS user_count FROM tnmt_users ");
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }

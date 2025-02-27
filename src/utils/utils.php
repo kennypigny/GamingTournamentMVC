@@ -1,9 +1,4 @@
 <?php
-function redirectTo($path)
-{
-	header('Location: ' . $path);
-}
-
 function view($path, $data = [])
 {
 	extract($data);

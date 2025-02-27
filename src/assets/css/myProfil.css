@@ -90,6 +90,18 @@ form{
   flex-wrap: wrap;
   justify-content: center;
 }
+
+::placeholder {
+  color: #000000; 
+  font-style: normal; 
+  font-size: 16px; 
+  opacity: 1;
+}
+
+input:focus::placeholder {
+  color: transparent;
+}
+
 .container-info-profil{
     width: 100%;
     height: auto;    

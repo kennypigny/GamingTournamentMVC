@@ -25,18 +25,18 @@
 .container-header h1 {
   width: 90%;
   height: 20%;
-  font-size: 2.3rem;
+  font-size: 1.5rem;
   text-align: center;
-  line-height: 4rem;
+  line-height: 3rem;
   text-shadow: 1px 1px 25px rgb(158, 219, 52, 0.5);
 }
 .container-header h2 {
   width: 90%;
   height: 20%;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 400;
-  line-height: 2rem;
+  line-height: 1.5rem;
   text-shadow: 1px 1px 25px rgb(158, 219, 52, 0.5);
 }
 .img-banner {
@@ -53,8 +53,8 @@
 }
 .cta {
   width: 250px;
-  height: 50px;
-  font-size: 1.2rem;
+  height: 30px;
+  font-size: 1rem;
   border-radius: 25px;
   color: rgb(158, 219, 52);
   background-color: #001c61;
@@ -170,6 +170,10 @@ option:hover {
     font-size: 2rem;
     line-height: 3.5rem;
   }
+  .container-header h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
   label {
     width: 26.65%;
   }
@@ -211,11 +215,13 @@ option:hover {
   .container-header h2 {
     font-size: 22px;
   }
+ 
 }
 @media (min-width: 1300px) {
   .container-header {
     width: 85%;
   }
+
   label {
     width: 28.35%;
   }
@@ -224,11 +230,23 @@ option:hover {
     width: 85%;
     font-size: 1.5rem;
   }
+
   select {
     font-size: 1.2rem;
   }
+
+  .container-header h2 {
+    font-size: 1.5rem;
+    line-height: 3rem;
+  }
 }
 @media (min-width: 1418px) {
+  .cta {
+    width: 400px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+
   .container-header h1 {
     font-size: 2.5rem;
     line-height: 4rem;
@@ -244,19 +262,12 @@ option:hover {
   .container-header {
     width: 85%;
   }
-  .container-header h2 {
-    font-size: 1.5rem;
-    line-height: 3rem;
-  }
+
   .container-header h1 {
     font-size: 3rem;
     line-height: 6rem;
   }
-  .cta {
-    width: 400px;
-    height: 60px;
-    font-size: 1.5rem;
-  }
+
   select {
     height: 60px;
     font-size: 1.3rem;

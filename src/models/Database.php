@@ -9,18 +9,14 @@ class Database
         try {
             $this->db = new PDO('mysql:host=mysql-con;dbname=database;charset=utf8', 'root', 'pw', [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_EMULATE_PREPARES //  Désactive l'émulation pour plus de sécurité
             ]);
             
         } catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
+            error_log("Erreur de connexion : " . $e->getMessage());
+            die('Erreur de connexion, Veuillez revenir plus tard');
         }
     }
 }
 
-//method appelé automatiquement quand l'objet est supprimé(ou = NULL) (stop la connection a la bdd)
-
-// public function __destruct()
-// {
-// 	$this->db = null;
-// }

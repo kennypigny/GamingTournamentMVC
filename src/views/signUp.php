@@ -23,38 +23,38 @@
 
                 <label for="nickname">Pseudo :<span class="infoPseudo">*Sera visible par les autres utilisateur</span>
                 </label>
-                <input type="text" name="nickname" id="nickname" placeholder="Pseudo" required />
+                <input type="text" name="nickname" id="nickname" placeholder="Pseudo" />
                 <small>
                     <?= isset($error['nickname']) ? $error['nickname'] : ''; ?>
                 </small>
 
 
-                <label for="firstname">Nom :</label>
-                <input type="text" name="firstname" id="firstname" placeholder="Nom" required />
+                <label for="lastname">Nom :</label>
+                <input type="text" name="lastname" id="lastname" placeholder="Nom" />
                 <small>
-                    <?= isset($error['firstname']) ? $error['firstname'] : '';  ?>
+                    <?= isset($error['lastname']) ? $error['lastname'] : '';  ?>
                 </small>
 
-                <label for="lastname">Prénom :</label>
-                <input type="text" name="lastname" id="lastname" placeholder="Prénom" required />
+                <label for="firstname">Prénom :</label>
+                <input type="text" name="firstname" id="firstname" placeholder="Prénom" />
                 <small>
-                    <?= isset($error['lastname']) ? $error['lastname'] : ''; ?>
+                    <?= isset($error['firstname']) ? $error['firstname'] : ''; ?>
                 </small>
 
                 <label for="password">Mot de passe :</label>
                 <input class="password-character-requiered" type="password" name="password" id="password"
-                    placeholder="**********" minlength="8" maxlength="24" required />
-                <p >
+                    placeholder="**********" minlength="8" maxlength="24" />
+                <small>
                     <?= isset($error['password']) ? $error['password'] : ''; ?>
                 </small>
 
 
                 <label for="confirmPassword">Confirmez mot de passe :</label>
-                <input type="password" name="confirmPassword" id="confirmPassword" placeholder="**********" required />
-                
+                <input type="password" name="confirmPassword" id="confirmPassword" placeholder="**********" />
+
 
                 <label for="email">Adresse Email :</label>
-                <input type="email" name="email" id="email" placeholder="ex : Adresse-Email@gmail.com" required />
+                <input type="email" name="email" id="email" placeholder="ex : Adresse-Email@gmail.com" />
                 <small>
                     <?= isset($error['email']) ? $error['email'] : ''; ?>
                 </small>
@@ -67,6 +67,8 @@
             </div>
 
         </form>
+        
+        <a href="/" class="back"> <<< Retour a l'acceuil</a>
     </div>
 
     <script src="../assets/js/signUp.js"></script>

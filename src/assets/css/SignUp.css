@@ -38,7 +38,6 @@ small {
   box-shadow: 0 0 15px 0px rgba(158, 219, 52);
   border-radius: 15px;
   transition: box-shadow 1s;
-  position: fixed;
   font-size: 1.2rem;
 }
 .containerSignUp:hover {
@@ -126,4 +125,15 @@ form p {
 input::placeholder {
   color: rgba(0, 0, 0, 0.6);
   font-style: italic;
+}
+
+.back{
+  width: 220px;
+  font-size: 20px;
+  margin-top: auto;
+  margin-right: auto;
+  padding: 20px;
+}
+.back:visited{
+  color: #f2f2f2;
 }

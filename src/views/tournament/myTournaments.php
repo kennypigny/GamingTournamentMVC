@@ -2,7 +2,7 @@
 <main>
       <div class="main-container-organised-tournament">
         <div class="container-organised-tournament">
-          <h1>Mes tournois organisés :</h1>
+          <h1>Mes tournois organisés </h1>
           <div class="box-organised-tournament">
              <!-- carte tournois -->
           <div class="card-tournament">
