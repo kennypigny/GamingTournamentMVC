@@ -48,30 +48,40 @@
 	</ul>
 	<ul>
 		<li class="divider-nav"></li>
-	<?php if (empty($_SESSION['email'])) { ?>
-		<li class="block">
-			<img src="/assets/img/General/user.png" alt="Icone connection" />
-			<a href="/login">Connection</a>
-		</li>
+		<?php if (!empty($_SESSION['email'])) { ?>
+			<li class="block">
+				<img src="/assets/img/General/user.png" alt="Icone profil" />
+				<a href="/myProfil"> Mon profil <span>(<?= $_SESSION['nickname'] ?>)</span> </a>
+			</li>
+			<li class="block">
+				<img src="/assets/img/General/user.png" alt="Icone profil" />
+				<a href="/logout">Déconnexion</a>
+			</li>
 
-		<li>
-			<img
-				src="/assets/img/General/add-user.png"
-				alt="Icone inscription" />
-			<a href="/signUp">Inscription</a>
-		</li>		
-	<?php	
-	}else { ?>
-		<li class="block">
-			<img src="/assets/img/General/user.png" alt="Icone profil" />
-			<a href="/myProfil"> Mon profil <span>(<?= $_SESSION['nickname'] ?>)</span> </a>
-		</li>
-		<li class="block">
-			<img src="/assets/img/General/user.png" alt="Icone profil" />
-			<a href="/logout">Déconnexion</a>
-		</li>
-	<?php } ?>
-		
-		
+			<?php if ($_SESSION['email'] == 'pigny.kenny@gmail.com') { ?>
+				<li>
+					<img
+						src="/assets/img/General/add-user.png"
+						alt="Icone admin" />
+					<a href="/AdminDashboard">Tableau de bord</a>
+				</li>
+			<?php } ?>
+		<?php
+		} else { ?>
+			<li class="block">
+				<img src="/assets/img/General/user.png" alt="Icone connection" />
+				<a href="/login">Connection</a>
+			</li>
+
+			<li>
+				<img
+					src="/assets/img/General/add-user.png"
+					alt="Icone inscription" />
+				<a href="/signUp">Inscription</a>
+			</li>
+
+		<?php } ?>
+
+
 	</ul>
 </nav>

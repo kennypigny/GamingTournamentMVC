@@ -1,4 +1,9 @@
 <?php
+session_start();
+if ($_SESSION['email'] != 'pigny.kenny@gmail.com') {
+  header("Location: /");
+  exit;
+}
 require 'models/User.php';
 
 $user = new User;
@@ -13,9 +18,9 @@ $user->countUser();
 
 function showUsers()
 {
-    global $users;
-    foreach ($users as $user) {
-        echo '<li class="list-item">
+  global $users;
+  foreach ($users as $user) {
+    echo '<li class="list-item">
               <a class="user-lign" href="/" target="_blank">
                 <p class="name">
                   <img
@@ -33,10 +38,9 @@ function showUsers()
               <button class="delete" type="submit" name="id" value="' . $user['id_users'] . '"><img src="../assets/img/General/poubelle.png" alt="Supprimer"></button>
               </form>
             </li>';
-    }
-
+  }
 }
 
-view('adminDashboard',[
-  'countUsers' => $user->countUser(), 
+view('adminDashboard', [
+  'countUsers' => $user->countUser(),
 ]);

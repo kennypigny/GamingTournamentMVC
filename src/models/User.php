@@ -2,6 +2,9 @@
 
 class User extends Database
 {
+    // public function __construct() {
+    //     parent::__construct();
+    // }
 
     private $firstname;
     private $lastname;
@@ -267,7 +270,7 @@ class User extends Database
     }
 
     /**
-     * Modify the user's information
+     * Modify the user's information with email
      * @param string $email The email of the user
      * @return bool True if the user's information was modified
      * @throws Exception If the email is already used

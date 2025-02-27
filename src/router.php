@@ -9,7 +9,7 @@ $path = $_SERVER['REDIRECT_URL'];
 if ($path == '/') {
     require 'controllers/indexController.php';
 } else {
-    $controlleur = 'controllers/' . $path . 'Controller.php';
+    $controlleur = 'controllers' . $path . 'Controller.php';
 
     if (file_exists($controlleur)) {
         require $controlleur;
