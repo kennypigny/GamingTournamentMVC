@@ -243,7 +243,13 @@ class User extends Database
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         return $user ? $user['country'] : null;
     }
+    public function getId($email){
+        $stmt = $this->db->prepare("SELECT id_users FROM tnmt_users WHERE email = :email");
+        $stmt->execute(['email' => $email]);
 
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $user ? $user['id_users'] : null;
+    }
 
     /**
      * Register a new user
@@ -257,13 +263,13 @@ class User extends Database
         }
 
         $stmt = $this->db->prepare("INSERT INTO `tnmt_users`(`firstname`, `lastname`, `email`, `pseudo`, `password`,`date_created_account`, `id_role`) 
-        VALUES (:firstname, :lastname, :email, :pseudo, :password, NOW(), 1)");
+        VALUES (:firstname, :lastname, :email, :pseudo, :pass, NOW(), 1)");
 
         $stmt->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
         $stmt->bindValue(':lastname', $this->lastname, PDO::PARAM_STR);
         $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
         $stmt->bindValue(':pseudo', $this->nickname, PDO::PARAM_STR);
-        $stmt->bindValue(':password', $this->password, PDO::PARAM_STR);
+        $stmt->bindValue(':pass', $this->password, PDO::PARAM_STR);
 
 
         return $stmt->execute();
@@ -310,8 +316,8 @@ class User extends Database
             return $stmt->execute();
         }
         if (!empty($_POST['password'])) {
-            $stmt = $this->db->prepare("UPDATE `tnmt_users` SET `password` = :password WHERE `email` = :email");
-            $stmt->bindValue(':password', $this->password, PDO::PARAM_STR);
+            $stmt = $this->db->prepare("UPDATE `tnmt_users` SET `password` = :pass WHERE `email` = :email");
+            $stmt->bindValue(':pass', $this->password, PDO::PARAM_STR);
             $stmt->bindValue(':email', $email);
 
             return $stmt->execute();

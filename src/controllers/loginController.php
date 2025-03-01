@@ -14,6 +14,7 @@ if (!isset($_POST['email']) || !isset($_POST['password'])) {
         $_SESSION['lastname'] = $user->getLastname($_POST['email']);
         $_SESSION['id'] = $user->getRole($_POST['email']);
         $_SESSION['country'] = $user->getCountry($_POST['email']);
+        $_SESSION['id'] = $user->getId($_POST['email']);
         header('Location: /');
         exit();
     } else {
@@ -22,4 +23,7 @@ if (!isset($_POST['email']) || !isset($_POST['password'])) {
 }
 
 
-view('login', ['error' => $error]);
+
+view('login', [
+    'error' => $error,
+]);

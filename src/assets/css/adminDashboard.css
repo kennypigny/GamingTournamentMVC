@@ -178,7 +178,7 @@ label img:active{
 }
 .user-lign {
   display: flex;
-  width: 95%;
+  width: 100%;
   align-items: center;
   padding: 15px;
   font-size: 16px;
@@ -212,6 +212,7 @@ label img:active{
 .user-nickname {
   display: flex;
   justify-content: space-between;
+  margin-right: 15px;
 }
 
 li > img {

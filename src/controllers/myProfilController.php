@@ -1,19 +1,27 @@
 <?php
 session_start();
-
-
+require 'models/User.php';
+$user = new User();
+// var_dump($_POST);
 $error = [];
+
+if (!empty($_POST['delete'])) {
+    $user->deleteUser($_SESSION['id']);
+    session_destroy();
+    header('Location: /');
+}
 
 //Verification de la connexion
 if (! isset($_SESSION['email'])) {
-    header('Location: /login');
+    header('Location: /');
     exit();
 }
 
+
+
 //Verification de la modification
 if (! empty($_POST)) {
-    require 'models/User.php';
-    $user = new User();
+
 
 
     try {
@@ -46,18 +54,26 @@ if (! empty($_POST)) {
         $error['password'] = $e->getMessage();
     }
 
+    try {
+        $user->setPassword($_POST['password']);
+    } catch (\Exception $e) {
+        $error['password'] = $e->getMessage();
+    }
+
 
     if ($user->modify($_SESSION['email'])) {
         $_SESSION['nickname'] = $user->getNickname($_SESSION['email']);
         $_SESSION['firstname'] = $user->getFirstname($_SESSION['email']);
         $_SESSION['lastname'] = $user->getLastname($_SESSION['email']);
         $_SESSION['country'] = $user->getCountry($_SESSION['email']);
-
-
     } else {
         $error['global'] = 'Echec de la modification';
     }
 }
 
 
-view('myProfil', ['error' => $error]);
+
+
+view('myProfil', [
+    'error' => $error,
+]);

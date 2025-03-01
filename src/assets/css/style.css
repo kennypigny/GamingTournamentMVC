@@ -10,6 +10,7 @@
 }
 
 body {
+  width: 100%;
   background-color: #151b27;
   min-height: 100vh;
   display: flex;
@@ -25,10 +26,6 @@ footer {
   margin-top: 100px;
 }
 
-.block {
-  display: block;
-  width: 100%;
-}
 
 /* NAVBAR */
 

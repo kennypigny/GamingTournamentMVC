@@ -35,7 +35,7 @@
           id="email"
           placeholder="Adresse E-mail"
           required />
-        <small><?php isset($error['global']) ? $error['global'] : ''; ?></small>
+        <small><?= isset($error['global']) ? $error['global'] : ''; ?></small>
         <label for="password">Mot de passe :</label>
         <input
           type="password"
@@ -43,9 +43,6 @@
           id="password"
           placeholder="Mot de passe"
           required />
-        <small>
-          <?= isset($error['email']) ? $error['email'] : ''; ?>
-        </small>
 
         <div class="containerButton">
           <input type="submit" value="Se connecter" />

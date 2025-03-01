@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if ($_SESSION['email'] != 'pigny.kenny@gmail.com') {
   header("Location: /");
   exit;
@@ -8,13 +9,14 @@ require 'models/User.php';
 
 $user = new User;
 
-if (isset($_POST['id'])) {
-  $user->deleteUser($_POST['id']);
+if (isset($_POST['get-id'])) {
+  $user->deleteUser($_POST['get-id']);
 }
 
 $users = $user->getUsers();
 
 $user->countUser();
+
 
 function showUsers()
 {
@@ -29,14 +31,12 @@ function showUsers()
                 </p>
                 <p class="user-email">' . $user['email'] . '</p>
                 <p class="user-nickname">
-                  ' . $user['pseudo'] . ' <span class="green">"Online"</span><img
-                    src="./assets/img/General/crayon.png"
-                    alt="Modifier l\'utilisateur" />
+                  ' . $user['pseudo'] . ' ' . ' <span class="green">"Online"</span>
                 </p>
+                <form method="POST">
+                <button class="delete" type="submit" name="get-id" value="' . $user['id_users'] . '"><img src="../assets/img/General/poubelle.png" alt="Supprimer"></button>
+                </form>
               </a>
-              <form method="POST">
-              <button class="delete" type="submit" name="id" value="' . $user['id_users'] . '"><img src="../assets/img/General/poubelle.png" alt="Supprimer"></button>
-              </form>
             </li>';
   }
 }

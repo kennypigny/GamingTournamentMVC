@@ -13,7 +13,7 @@
 }
 
 .box-organised-tournament {
-  width: 90%;
+  width: 100%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -39,8 +39,15 @@ h1 {
 }
 @media (min-width: 1024px) {
   .container-organised-tournament {
+    width: 80%;
+  }
+}
+
+@media (min-width: 1300px){
+  .container-organised-tournament {
     width: 85%;
   }
+
 }
 
 

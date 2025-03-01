@@ -86,20 +86,26 @@
 							<option value="xbox">Xbox série X/S</option>
 						</select>
 						<div class="size-player">
-							<label for="size">Taille :</label>
-							<input name="size" id="size" type="text" required />
-							<label for="players"> Joueurs </label>
+							<label for="size">Taille :
+								<input name="size" id="size" type="text" required />
+							</label>
+							
+							<label for="players"> Joueurs 
 							<input
 								type="radio"
 								name="participant"
 								id="players"
 								value="players" />
-							<label for="teams">Equipes</label>
+							</label>
+							
+							<label for="teams">Equipes
 							<input
 								type="radio"
 								name="participant"
 								id="teams"
 								value="teams" />
+							</label>
+							
 						</div>
 					</div>
 				</div>

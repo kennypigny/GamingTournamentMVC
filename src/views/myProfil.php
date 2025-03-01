@@ -53,7 +53,7 @@
               type="text"
               placeholder="<?= $_SESSION['lastname'] ?>" />
             <p class="message-error letter-error-firstname">
-              <?= isset($error['nickname']) ? $error['nickname'] : '2523'; ?>
+              <?= isset($error['nickname']) ? $error['nickname'] : ''; ?>
             </p>
             <label for="firstname">Prénom : </label>
             <input
@@ -181,7 +181,7 @@
               id="delete-account"
               type="password" />
             <div class="container-button-update">
-              <button class="button-update">Supprimer</button>
+              <button type="submit" class="button-update" name="delete" value="delete">Supprimer</button>
             </div>
           </div>
         </div>

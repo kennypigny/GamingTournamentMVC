@@ -125,6 +125,9 @@ option:hover {
 }
 
 /* CONTAINER DES TOURNOIS POPULAIRE  */
+main{
+  width: 100%;
+}
 .main-container-tournament {
   width: 100%;
   height: auto;
@@ -133,7 +136,7 @@ option:hover {
 }
 
 .container-tournament-mostPopular {
-  width: 90%;
+  width: 100%;
   height: auto;
   margin: auto;
   display: flex;
@@ -238,6 +241,9 @@ option:hover {
   .container-header h2 {
     font-size: 1.5rem;
     line-height: 3rem;
+  }
+  .container-tournament-mostPopular{
+    width: 85%;
   }
 }
 @media (min-width: 1418px) {
