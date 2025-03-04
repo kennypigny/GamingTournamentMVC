@@ -28,7 +28,7 @@ class User extends Database
             if (strlen($value) > 3 && strlen($value) <= 15) {
                 if (preg_match('/^[a-zA-Z0-9]+$/', $value)) {
 
-                    $this->nickname = htmlspecialchars($value);
+                    $this->nickname = trim(htmlspecialchars($value, ENT_QUOTES, 'UTF-8'));
                 } else {
                     throw new Exception('Votre pseudo doit contenir uniquement des lettres ou des chiffres');
                 }
@@ -63,14 +63,14 @@ class User extends Database
     public function setFirstname($value)
     {
         if (! empty($value)) {
-            if (preg_match('/^[a-zA-Z]+$/', $value)) {
+            if (preg_match('/^[\p{L} \'-]+$/u', $value)) {
 
-                $this->firstname = htmlspecialchars($value);
+                $this->firstname = trim(htmlspecialchars($value, ENT_QUOTES, 'UTF-8'));
             } else {
                 throw new Exception('Votre nom doit contenir uniquement des lettres');
             }
         } else {
-            throw new Exception('Veuillez renseigner un nom');
+            return throw new Exception('Veuillez renseigner un nom');
         }
     }
     /**
@@ -94,10 +94,12 @@ class User extends Database
      */
     public function setLastname($value)
     {
-        if (! empty($value)) {
-            if (preg_match('/^[a-zA-Z]+$/', $value)) {
 
-                $this->lastname = htmlspecialchars($value);
+        
+        if (! empty($value)) {
+            if (preg_match('/^[\p{L} \'-]+$/u', $value)) {
+
+                $this->lastname = trim(htmlspecialchars($value, ENT_QUOTES, 'UTF-8'));
             } else {
                 throw new Exception('Votre prénom doit contenir uniquement des lettres');
             }
@@ -182,7 +184,7 @@ class User extends Database
                 throw new Exception('Cet email est déjà utilisé.');
             }
             if (filter_var($value, FILTER_VALIDATE_EMAIL)) {
-                $this->email = htmlspecialchars($value);
+                $this->email = trim($value);
             } else {
                 throw new Exception('Veuillez renseigner email valide');
             }
@@ -225,7 +227,7 @@ class User extends Database
     public function setCountry($value)
     {
         if (! empty($value)) {
-            $this->country = htmlspecialchars($value);
+            $this->country = trim(htmlspecialchars($value, ENT_QUOTES, 'UTF-8'));
         } else {
             throw new Exception('Veuillez renseigner un pays');
         }
@@ -275,53 +277,50 @@ class User extends Database
         return $stmt->execute();
     }
 
-    /**
-     * Modify the user's information with email
-     * @param string $email The email of the user
-     * @return bool True if the user's information was modified
-     * @throws Exception If the email is already used
-     */
     public function modify($email)
     {
-
+        $updates = [];
+        $params = [':email' => $email];
+    
         if (!empty($_POST['firstname'])) {
-            $stmt = $this->db->prepare("UPDATE `tnmt_users` SET `firstname` = :firstname WHERE `email` = :email");
-            $stmt->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
-            $stmt->bindValue(':email', $email);
-
-            return $stmt->execute();
+            $updates[] = "`firstname` = :firstname";
+            $params[':firstname'] = $this->firstname;
         }
-
+    
         if (!empty($_POST['lastname'])) {
-            $stmt = $this->db->prepare("UPDATE `tnmt_users` SET `lastname` = :lastname WHERE `email` = :email");
-            $stmt->bindValue(':lastname', $this->lastname, PDO::PARAM_STR);
-            $stmt->bindValue(':email', $email);
-
-            return $stmt->execute();
+            $updates[] = "`lastname` = :lastname";
+            $params[':lastname'] = $this->lastname;
         }
-
+    
         if (!empty($_POST['nickname'])) {
-            $stmt = $this->db->prepare("UPDATE `tnmt_users` SET `pseudo` = :pseudo WHERE `email` = :email");
-            $stmt->bindValue(':pseudo', $this->nickname, PDO::PARAM_STR);
-            $stmt->bindValue(':email', $email);
-
-            return $stmt->execute();
+            $updates[] = "`pseudo` = :pseudo";
+            $params[':pseudo'] = $this->nickname;
         }
-
+    
         if (!empty($_POST['country'])) {
-            $stmt = $this->db->prepare("UPDATE `tnmt_users` SET `country` = :country WHERE `email` = :email");
-            $stmt->bindValue(':country', $this->country, PDO::PARAM_STR);
-            $stmt->bindValue(':email', $email);
-
-            return $stmt->execute();
+            $updates[] = "`country` = :country";
+            $params[':country'] = $this->country;
         }
+    
         if (!empty($_POST['password'])) {
-            $stmt = $this->db->prepare("UPDATE `tnmt_users` SET `password` = :pass WHERE `email` = :email");
-            $stmt->bindValue(':pass', $this->password, PDO::PARAM_STR);
-            $stmt->bindValue(':email', $email);
-
+            $updates[] = "`password` = :pass";
+            $params[':pass'] = $this->password; 
+        }
+    
+        
+        if (!empty($updates)) {
+            $sql = "UPDATE `tnmt_users` SET " . implode(", ", $updates) . " WHERE `email` = :email";
+            $stmt = $this->db->prepare($sql);
+    
+            // Associer les valeurs
+            foreach ($params as $key => $value) {
+                $stmt->bindValue($key, $value, PDO::PARAM_STR);
+            }
+    
             return $stmt->execute();
         }
+    
+        return false;
     }
 
     /**

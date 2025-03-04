@@ -52,32 +52,31 @@
               id="lastname"
               type="text"
               placeholder="<?= $_SESSION['lastname'] ?>" />
-            <p class="message-error letter-error-firstname">
-              <?= isset($error['nickname']) ? $error['nickname'] : ''; ?>
-            </p>
+            <small>
+              <?= isset($error['lastname']) ? $error['lastname'] : ''; ?>
+            </small>
             <label for="firstname">Prénom : </label>
             <input
               name="firstname"
               id="firstname"
               type="text"
               placeholder="<?= $_SESSION['firstname'] ?>" />
-            <p class="message-error letter-error-secondname">
-              Le prénom doit contenir seulement les caractères a-z et A-Z
-            </p>
+            <small>
+              <?= isset($error['firstname']) ? $error['firstname'] : ''; ?>
+            </small>
             <label for="nickname">Pseudo : </label>
             <input
               name="nickname"
               id="nickname"
               type="text"
-              placeholder="<?= $_SESSION['nickname'] ?>"
-               />
-            <p class="message-error letter-error-nickname">
-              Le pseudo doit contenir seulement les caractères a-z , A-Z
-            </p>
+              placeholder="<?= $_SESSION['nickname'] ?>" />
+            <small>
+              <?= isset($error['nickname']) ? $error['nickname'] : ''; ?>
+            </small>
             <label for="country">Pays : </label>
-            <select name="country" id="country" >
+            <select name="country" id="country">
               <option value="" <?= $_SESSION['country'] == NULL ? 'selected' : ' '  ?>>--Choisissez un pays--</option>
-              <option value="france"<?= $_SESSION['country'] == 'france' ?  'selected'  : ' '  ?>>France</option>
+              <option value="france" <?= $_SESSION['country'] == 'france' ?  'selected'  : ' '  ?>>France</option>
               <option value="espagne" <?= $_SESSION['country'] == 'espagne' ? 'selected' : ' '  ?>>Espagne</option>
               <option value="angleterre" <?= $_SESSION['country'] == 'angleterre' ? 'selected' : ' '  ?>>Angleterre</option>
               <option value="allemagne" <?= $_SESSION['country'] == 'allemagne' ? 'selected' : ' '  ?>>Allemagne</option>
@@ -105,15 +104,13 @@
               name="password"
               id="password"
               type="password"
-              placeholder="**********"
-               />
-               <small><?= isset($error['password']) ?></small>
+              placeholder="**********" />
+            <small><?= isset($error['password']) ?></small>
             <label for="new-password">Nouveau mot de passe : </label>
             <input
               name="new-password"
               id="new-password"
-              type="password"
-               />
+              type="password" />
             <p class="message-error password-error">
               Le mot de passe doit contenir au moins 8 caractères, une
               majuscule, une minuscule, un chiffre et un caractère spécial.
@@ -123,8 +120,7 @@
             <input
               name="verify-password"
               id="verify-password"
-              type="password"
-               />
+              type="password" />
             <p class="message-error password-error-confirm">
               Le mot de passe ne correspond pas.
             </p>

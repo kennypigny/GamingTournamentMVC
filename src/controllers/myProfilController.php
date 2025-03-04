@@ -2,7 +2,6 @@
 session_start();
 require 'models/User.php';
 $user = new User();
-// var_dump($_POST);
 $error = [];
 
 if (!empty($_POST['delete'])) {
@@ -28,6 +27,7 @@ if (! empty($_POST)) {
         $user->setNickname($_POST['nickname']);
     } catch (\Exception $e) {
         $error['nickname'] = $e->getMessage();
+        var_dump($error);
     }
 
     try {
