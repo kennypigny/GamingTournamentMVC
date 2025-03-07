@@ -25,6 +25,12 @@ header {
 footer {
   margin-top: 100px;
 }
+/* MESSAGE D ERREUR VERIFICATION REGEX PHP */
+small {
+  display: block;
+  font-size: 10px;
+  color: red;
+}
 
 
 /* NAVBAR */

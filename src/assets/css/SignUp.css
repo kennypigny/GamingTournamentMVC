@@ -20,12 +20,7 @@ body {
   justify-content: center;
   align-items: center;
 }
-/* MESSAGE D ERREUR VERIFICATION REGEX */
-small {
-  display: block;
-  font-size: 10px;
-  color: red;
-}
+
 
 
 /* CONTAINER SIGNUP */

@@ -5,7 +5,7 @@
 	<div class="main-container-header">
 		<div class="container-header">
 			<div class="container-responsiv-header">
-				<h1 id="title">CREER, RIVALISER, CONQUERIR</h1>
+				<h1 id="title">CREER RIVALISER CONQUERIR</h1>
 				<h2>
 					Rejoignez une communauté de passionnés, relevez des défis, et
 					atteignez les sommets ! Vos victoires commencent ici.

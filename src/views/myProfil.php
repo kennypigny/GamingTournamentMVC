@@ -114,7 +114,7 @@
               id="new-password"
               type="password" />
             <small>
-              <?= isset($error['password']) ? $error['password'] : ''; ?>
+              <?= isset($error['new-password']) ? $error['new-password'] : ''; ?>
             </small>
             <label for="verify-password">Retapez votre nouveau mot de passe :
             </label>
@@ -123,7 +123,7 @@
               id="verify-password"
               type="password" />
             <small>
-              <?= isset($error['password']) ? $error['password'] : ''; ?>
+              <?= isset($error['new-password']) ? $error['new-password'] : ''; ?>
             </small>
             <div class="container-button-update">
               <button class="button-update" id="button-change-password">
@@ -150,12 +150,6 @@
               name="password-now-mail"
               id="password-now-mail"
               type="password" />
-            <div class="container-button-update">
-              <p class="message-error new-email-error">
-                Entrer une adresse email valide.
-              </p>
-
-            </div>
             <button class="button-update" id="button-change-mail">
               Mettre a jour
             </button>
@@ -177,6 +171,9 @@
               name="delete-account"
               id="delete-account"
               type="password" />
+            <small>
+              <?= isset($error['delete-account']) ? $error['delete-account'] : ''; ?>
+            </small>
             <div class="container-button-update">
               <button type="submit" class="button-update" name="delete" value="delete">Supprimer</button>
             </div>

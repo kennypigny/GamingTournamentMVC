@@ -4,9 +4,13 @@ $user = new User();
 $error = [];
 
 if (!empty($_POST['delete'])) {
-    $user->deleteUser($_SESSION['id']);
-    session_destroy();
-    header('Location: /');
+    if ($user->verifyPassword($_SESSION['email'], $_POST['delete-account']) == true) {
+        $user->deleteUser($_SESSION['id']);
+        session_destroy();
+        header('Location: /');
+    }else {
+        $error['delete-account'] = 'mot de passe incorrect';
+    }
 }
 
 //Verification de la connexion
@@ -19,6 +23,7 @@ if (! isset($_SESSION['email'])) {
 
 //Verification de la modification
 if (! empty($_POST)) {
+
 
     try {
         $user->setEmail($_SESSION['email']);
@@ -58,9 +63,15 @@ if (! empty($_POST)) {
         }
     }
 
-    if (!empty($_POST['password'])) {
+
+    if (!empty($_POST['new-password'])) {
+
+        if ($user->verifyPassword($_SESSION['email'], $_POST['password']) == false) $error['password'] = 'mot de passe incorrect';
+
+        if ($_POST['new-password'] != $_POST['verify-password']) $error['new-password'] = 'Mot de passe incorrect';
+
         try {
-            $user->setPassword($_POST['password']);
+            $user->setPassword($_POST['new-password']);
         } catch (\Exception $e) {
             $error['password'] = $e->getMessage();
         }
