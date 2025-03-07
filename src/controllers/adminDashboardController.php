@@ -1,10 +1,8 @@
 <?php
-session_start();
-
 if ($_SESSION['email'] != 'pigny.kenny@gmail.com') {
-  header("Location: /");
-  exit;
+  redirectTo('/');
 }
+
 require 'models/User.php';
 
 $user = new User;

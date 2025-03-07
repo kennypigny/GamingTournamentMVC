@@ -2,10 +2,6 @@
 
 class User extends Database
 {
-    // public function __construct() {
-    //     parent::__construct();
-    // }
-
     private $firstname;
     private $lastname;
     private $email;
@@ -23,22 +19,13 @@ class User extends Database
      */
     public function setNickname($value)
     {
+        if (empty($value)) throw new Exception('Veuillez renseigner un pseudo');
+        if (strlen($value) < 3 || strlen($value) > 15) throw new Exception('Votre pseudo doit contenir entre 3 et 15 caractères');
+        if (!preg_match('/^[a-zA-Z0-9]+$/', $value)) throw new Exception('Votre pseudo doit contenir uniquement des lettres ou des chiffres');
 
-        if (! empty($value)) {
-            if (strlen($value) > 3 && strlen($value) <= 15) {
-                if (preg_match('/^[a-zA-Z0-9]+$/', $value)) {
-
-                    $this->nickname = trim(htmlspecialchars($value, ENT_QUOTES, 'UTF-8'));
-                } else {
-                    throw new Exception('Votre pseudo doit contenir uniquement des lettres ou des chiffres');
-                }
-            } else {
-                throw new Exception('Votre pseudo doit contenir entre 3 et 15 caractères');
-            }
-        } else {
-            throw new Exception('Veuillez renseigner un pseudo');
-        }
+        $this->nickname = trim(htmlspecialchars($value, ENT_QUOTES, 'UTF-8'));
     }
+
     /**
      * Get the nickname (pseudo) of a user 
      * @param string $email The email of the user
@@ -67,12 +54,13 @@ class User extends Database
 
                 $this->firstname = trim(htmlspecialchars($value, ENT_QUOTES, 'UTF-8'));
             } else {
-                throw new Exception('Votre nom doit contenir uniquement des lettres');
+                throw new Exception('Votre prénom doit contenir uniquement des lettres');
             }
         } else {
             return throw new Exception('Veuillez renseigner un nom');
         }
     }
+
     /**
      * Get the firstname of a user .
      * @param string $email The email of the user.
@@ -86,6 +74,7 @@ class User extends Database
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         return $user ? $user['firstname'] : null;
     }
+
     /**
      * Validate and set the lastname.
      * Must be only letters.
@@ -94,19 +83,12 @@ class User extends Database
      */
     public function setLastname($value)
     {
+        if (empty($value)) throw new Exception('Veuillez renseigner un prénom');
+        if (!preg_match('/^[\p{L} \'-]+$/u', $value)) throw new Exception('Votre nom doit contenir uniquement des lettres');
 
-        
-        if (! empty($value)) {
-            if (preg_match('/^[\p{L} \'-]+$/u', $value)) {
-
-                $this->lastname = trim(htmlspecialchars($value, ENT_QUOTES, 'UTF-8'));
-            } else {
-                throw new Exception('Votre prénom doit contenir uniquement des lettres');
-            }
-        } else {
-            throw new Exception('Veuillez renseigner un prénom');
-        }
+        $this->lastname = trim(htmlspecialchars($value, ENT_QUOTES, 'UTF-8'));
     }
+
     /**
      * Get the lastname of a user
      * @param string $email The email of the user.
@@ -142,6 +124,7 @@ class User extends Database
             throw new Exception('Veuillez renseigner un mot de passe');
         }
     }
+
     /**
      * Get the password of a user 
      * @param string $email The email of the user
@@ -156,6 +139,7 @@ class User extends Database
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         return $user ? $user['password'] : 'null';
     }
+
     /**
      * @param string $email The email of the user
      * @param string $password The password to verify
@@ -171,6 +155,7 @@ class User extends Database
 
         return password_verify($password, $hashedPassword);
     }
+
     /** 
      * Validate and set the email
      * Must be a valid email
@@ -179,19 +164,12 @@ class User extends Database
      */
     public function setEmail($value)
     {
-        if (! empty($value)) {
-            if ($this->getEmail($value)) {
-                throw new Exception('Cet email est déjà utilisé.');
-            }
-            if (filter_var($value, FILTER_VALIDATE_EMAIL)) {
-                $this->email = trim($value);
-            } else {
-                throw new Exception('Veuillez renseigner email valide');
-            }
-        } else {
-            throw new Exception('Veuillez renseigner un email');
-        }
+        if (empty($value)) throw new Exception('Veuillez renseigner un email');
+        if (!filter_var($value, FILTER_VALIDATE_EMAIL)) throw new Exception('Veuillez renseigner email valide');
+
+        $this->email = trim($value);
     }
+
     /**
      * Get the email of a user 
      * @param string $email The email of the user
@@ -206,6 +184,7 @@ class User extends Database
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         return $user ? $user['email'] : null;
     }
+
     /**
      * Get the role of user 
      * @param string $email The email of the user
@@ -219,6 +198,7 @@ class User extends Database
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         return $user ? $user['id_role'] : null;
     }
+
     /**
      * Validate and set the country
      * @param string $value The country to set
@@ -232,6 +212,7 @@ class User extends Database
             throw new Exception('Veuillez renseigner un pays');
         }
     }
+
     /**
      * Get the country of a user
      * @param string $email The email of the user
@@ -245,7 +226,9 @@ class User extends Database
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         return $user ? $user['country'] : null;
     }
-    public function getId($email){
+
+    public function getId($email)
+    {
         $stmt = $this->db->prepare("SELECT id_users FROM tnmt_users WHERE email = :email");
         $stmt->execute(['email' => $email]);
 
@@ -260,9 +243,8 @@ class User extends Database
      */
     public function register()
     {
-        if ($this->getEmail($this->email)) {
-            throw new Exception('Cet email est déjà utilisé.');
-        }
+        if ($this->getEmail($this->email)) throw new Exception('Cet email est déjà utilisé.');
+
 
         $stmt = $this->db->prepare("INSERT INTO `tnmt_users`(`firstname`, `lastname`, `email`, `pseudo`, `password`,`date_created_account`, `id_role`) 
         VALUES (:firstname, :lastname, :email, :pseudo, :pass, NOW(), 1)");
@@ -277,49 +259,54 @@ class User extends Database
         return $stmt->execute();
     }
 
-    public function modify($email)
+    public function modify()
     {
+        if (empty($this->email)) {
+            logMessage('Email not found');
+            throw new Exception('Email non trouvé, réessayer plus tard');
+        }
+
         $updates = [];
-        $params = [':email' => $email];
-    
-        if (!empty($_POST['firstname'])) {
+        $params = [':email' => $this->email];
+
+        if (!empty($this->firstname)) {
             $updates[] = "`firstname` = :firstname";
             $params[':firstname'] = $this->firstname;
         }
-    
-        if (!empty($_POST['lastname'])) {
+
+        if (!empty($this->lastname)) {
             $updates[] = "`lastname` = :lastname";
             $params[':lastname'] = $this->lastname;
         }
-    
-        if (!empty($_POST['nickname'])) {
+
+        if (!empty($this->nickname)) {
             $updates[] = "`pseudo` = :pseudo";
             $params[':pseudo'] = $this->nickname;
         }
-    
-        if (!empty($_POST['country'])) {
+
+        if (!empty($this->country)) {
             $updates[] = "`country` = :country";
             $params[':country'] = $this->country;
         }
-    
-        if (!empty($_POST['password'])) {
+
+        if (!empty($this->password)) {
             $updates[] = "`password` = :pass";
-            $params[':pass'] = $this->password; 
+            $params[':pass'] = $this->password;
         }
-    
-        
+
+
         if (!empty($updates)) {
             $sql = "UPDATE `tnmt_users` SET " . implode(", ", $updates) . " WHERE `email` = :email";
             $stmt = $this->db->prepare($sql);
-    
+
             // Associer les valeurs
             foreach ($params as $key => $value) {
                 $stmt->bindValue($key, $value, PDO::PARAM_STR);
             }
-    
+
             return $stmt->execute();
         }
-    
+
         return false;
     }
 

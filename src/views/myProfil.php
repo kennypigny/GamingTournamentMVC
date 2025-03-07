@@ -105,25 +105,26 @@
               id="password"
               type="password"
               placeholder="**********" />
-            <small><?= isset($error['password']) ?></small>
+            <small>
+              <?= isset($error['password']) ? $error['password'] : ''; ?>
+            </small>
             <label for="new-password">Nouveau mot de passe : </label>
             <input
               name="new-password"
               id="new-password"
               type="password" />
-            <p class="message-error password-error">
-              Le mot de passe doit contenir au moins 8 caractères, une
-              majuscule, une minuscule, un chiffre et un caractère spécial.
-            </p>
+            <small>
+              <?= isset($error['password']) ? $error['password'] : ''; ?>
+            </small>
             <label for="verify-password">Retapez votre nouveau mot de passe :
             </label>
             <input
               name="verify-password"
               id="verify-password"
               type="password" />
-            <p class="message-error password-error-confirm">
-              Le mot de passe ne correspond pas.
-            </p>
+            <small>
+              <?= isset($error['password']) ? $error['password'] : ''; ?>
+            </small>
             <div class="container-button-update">
               <button class="button-update" id="button-change-password">
                 Mettre a jour
