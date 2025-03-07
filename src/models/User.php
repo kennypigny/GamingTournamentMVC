@@ -262,7 +262,7 @@ class User extends Database
     public function modify()
     {
         if (empty($this->email)) {
-            logMessage('Email not found');
+            
             throw new Exception('Email non trouvé, réessayer plus tard');
         }
 
