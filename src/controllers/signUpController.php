@@ -7,7 +7,6 @@ $error = [];
 
 //Process form submission for user registration.
 if (! empty($_POST)) {
-    require 'models/User.php';
     $user = new User();
 
     try {

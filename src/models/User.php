@@ -1,51 +1,61 @@
 <?php
 
+/**
+ * User class for managing user data and interactions with the database.
+ * 
+ * - Manages user properties such as ID, first name, last name, email, nickname, password, country, and role.
+ * - Provides methods SETTER and GETTER these properties with validation.
+ * - Includes methods for interacting with the database, including retrieving, registering, modifying, and deleting users.
+ */
 class User extends Database
 {
+    private $id;
     private $firstname;
     private $lastname;
     private $email;
     private $nickname;
     private $password;
     private $country;
+    private $role;
+
 
 
     //SETTER ET GETTER
-    /**
-     * Validate and set the nickname (pseudo)
-     * Must be 3-15 characters, only letters and numbers
-     * @param string $value The nickname to set
-     * @throws Exception If validation fails
-     */
-    public function setNickname($value)
-    {
-        if (empty($value)) throw new Exception('Veuillez renseigner un pseudo');
-        if (strlen($value) < 3 || strlen($value) > 15) throw new Exception('Votre pseudo doit contenir entre 3 et 15 caractères');
-        if (!preg_match('/^[a-zA-Z0-9]+$/', $value)) throw new Exception('Votre pseudo doit contenir uniquement des lettres ou des chiffres');
 
-        $this->nickname = trim(htmlspecialchars($value, ENT_QUOTES, 'UTF-8'));
+    /**
+     * Sets the ID of the user.
+     * 
+     * - Checks if the provided value is empty and throws an exception if it is.
+     * 
+     * @param $value The ID value to set.
+     * @throws Exception If the value is empty.
+     */
+    public function setId($value)
+    {
+        if (empty($value)) throw new Exception('Veuillez renseigner un id');
+
+        $this->id = (int) $value;
+    }
+    /**
+     * Gets the user ID.
+     * 
+     * @return int The ID of the user.
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
-    /**
-     * Get the nickname (pseudo) of a user 
-     * @param string $email The email of the user
-     * @return array The user's nickname
-     * @return null If the user does not exist
-     */
-    public function getNickname($email)
-    {
-        $stmt = $this->db->prepare("SELECT pseudo FROM tnmt_users WHERE email = :email");
-        $stmt->execute(['email' => $email]);
 
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $user ? $user['pseudo'] : null;
-    }
 
     /**
-     * Validate and set the firstname
-     * Must be only letters
-     * @param string $value The firstname to set
-     * @throws Exception If validation fails
+     * Sets the user's first name after validation and sanitization.
+     * 
+     * - Ensures the value is not empty and contains only valid characters.
+     * - Throws an exception if validation fails.
+     * 
+     * @param string $value The first name to set.
+     * @throws Exception If the value is empty or invalid.
      */
     public function setFirstname($value)
     {
@@ -57,29 +67,28 @@ class User extends Database
                 throw new Exception('Votre prénom doit contenir uniquement des lettres');
             }
         } else {
-            return throw new Exception('Veuillez renseigner un nom');
+            throw new Exception('Veuillez renseigner un nom');
         }
     }
-
     /**
-     * Get the firstname of a user .
-     * @param string $email The email of the user.
-     * @return array The user's firstname.
-     * @return null If the user does not exist.
+     * Gets the user's first name.
+     * 
+     * @return string The first name.
      */
-    public function getFirstname($email)
+    public function getFirstname()
     {
-        $stmt = $this->db->prepare("SELECT firstname FROM tnmt_users WHERE email = :email");
-        $stmt->execute(['email' => $email]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $user ? $user['firstname'] : null;
+        return $this->firstname;
     }
 
+
     /**
-     * Validate and set the lastname.
-     * Must be only letters.
-     * @param string $value The lastname to set.
-     * @throws Exception If validation fails.
+     * Validates and sets the user's last name.
+     * 
+     * - Ensures the value is not empty and contains only valid characters.
+     * - Throws an exception if validation fails.
+     * 
+     * @param string $value The last name to set.
+     * @throws Exception If empty or invalid.
      */
     public function setLastname($value)
     {
@@ -88,28 +97,82 @@ class User extends Database
 
         $this->lastname = trim(htmlspecialchars($value, ENT_QUOTES, 'UTF-8'));
     }
+    /**
+     * Gets the user's last name.
+     * 
+     * @return string The stored last name.
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
 
     /**
-     * Get the lastname of a user
-     * @param string $email The email of the user.
-     * @return array The user's lastname.
-     * @return null If the user does not exist.
+     * Valide et définit le pseudo de l'utilisateur.
+     * 
+     * - Vérifie que la valeur n'est pas vide et que sa longueur est entre 3 et 15 caractères.
+     * - Vérifie que le pseudo contient uniquement des lettres et des chiffres.
+     * - Lève une exception si la validation échoue.
+     * 
+     * @param string $value Le pseudo à définir.
+     * @throws Exception Si vide, longueur invalide, ou contient des caractères non alphanumériques.
      */
-    public function getLastname($email)
+    public function setNickname($value)
     {
-        $stmt = $this->db->prepare("SELECT lastname FROM tnmt_users WHERE email = :email");
-        $stmt->execute(['email' => $email]);
+        if (empty($value)) throw new Exception('Veuillez renseigner un pseudo');
+        if (strlen($value) < 3 || strlen($value) > 15) throw new Exception('Votre pseudo doit contenir entre 3 et 15 caractères');
+        if (!preg_match('/^[a-zA-Z0-9]+$/', $value)) throw new Exception('Votre pseudo doit contenir uniquement des lettres ou des chiffres');
 
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $user ? $user['lastname'] : null;
+        $this->nickname = trim(htmlspecialchars($value, ENT_QUOTES, 'UTF-8'));
+    }
+    /**
+     * Gets the user's nickname.
+     * 
+     * @return string The stored nickname.
+     */
+    public function getNickname()
+    {
+        return $this->nickname;
+    }
+
+
+    /**
+     * Validates and sets the user's email address.
+     * 
+     * - Ensures the value is not empty and is a valid email format.
+     * - Trims the email before assigning it.
+     * - Throws an exception if validation fails.
+     * 
+     * @param string $value The email to set.
+     * @throws Exception If empty or invalid email format.
+     */
+    public function setEmail($value)
+    {
+        if (empty($value)) throw new Exception('Veuillez renseigner un email');
+        if (!filter_var($value, FILTER_VALIDATE_EMAIL)) throw new Exception('Veuillez renseigner email valide');
+
+        $this->email = trim($value);
+    }
+    /**
+     * Gets the user's email address.
+     * 
+     * @return string The stored email address.
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 
     /**
-     * Validate and set the password
-     * Must be at least 8 characters
-     * Hash using `password_hash()`
-     * @param string $value The password to set
-     * @throws Exception If validation fails
+     * Validates and sets the user's password.
+     * 
+     * - Ensures the value is not empty and is at least 8 characters long.
+     * - Hashes the password using the default algorithm before assigning it.
+     * - Throws an exception if validation fails.
+     * 
+     * @param string $value The password to set.
+     * @throws Exception If empty or less than 8 characters.
      */
     public function setPassword($value)
     {
@@ -125,84 +188,16 @@ class User extends Database
         }
     }
 
-    /**
-     * Get the password of a user 
-     * @param string $email The email of the user
-     * @return array The user's password
-     * @return string 'null' If the user does not exist
-     */
-    public function getPassword($email)
-    {
-        $stmt = $this->db->prepare("SELECT password FROM tnmt_users WHERE email = :email");
-        $stmt->execute(['email' => $email]);
 
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $user ? $user['password'] : 'null';
-    }
 
     /**
-     * @param string $email The email of the user
-     * @param string $password The password to verify
-     * @return bool True if the password is correct, false otherwise
-     */
-    public function verifyPassword($email, $password)
-    {
-        $hashedPassword = $this->getPassword($email);
-
-        if (!is_string($hashedPassword)) {
-            return false;
-        }
-
-        return password_verify($password, $hashedPassword);
-    }
-
-    /** 
-     * Validate and set the email
-     * Must be a valid email
-     * @param string $value The email to set
-     * @throws Exception If validation fails
-     */
-    public function setEmail($value)
-    {
-        if (empty($value)) throw new Exception('Veuillez renseigner un email');
-        if (!filter_var($value, FILTER_VALIDATE_EMAIL)) throw new Exception('Veuillez renseigner email valide');
-
-        $this->email = trim($value);
-    }
-
-    /**
-     * Get the email of a user 
-     * @param string $email The email of the user
-     * @return array The user's email
-     * @return null If the user does not exist
-     */
-    public function getEmail($email)
-    {
-        $stmt = $this->db->prepare("SELECT email FROM tnmt_users WHERE email = :email");
-        $stmt->execute(['email' => $email]);
-
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $user ? $user['email'] : null;
-    }
-
-    /**
-     * Get the role of user 
-     * @param string $email The email of the user
-     * @return array The user's id
-     */
-    public function getRole($email)
-    {
-        $stmt = $this->db->prepare("SELECT id_role FROM tnmt_users WHERE email = :email");
-        $stmt->execute(['email' => $email]);
-
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $user ? $user['id_role'] : null;
-    }
-
-    /**
-     * Validate and set the country
-     * @param string $value The country to set
-     * @throws Exception If validation fails
+     * Validates and sets the user's country.
+     * 
+     * - Ensures the value is not empty.
+     * - Throws an exception if validation fails.
+     * 
+     * @param string $value The country to set.
+     * @throws Exception If empty.
      */
     public function setCountry($value)
     {
@@ -212,40 +207,116 @@ class User extends Database
             throw new Exception('Veuillez renseigner un pays');
         }
     }
-
     /**
-     * Get the country of a user
-     * @param string $email The email of the user
-     * @return array The user country
+     * Gets the user's country.
+     * 
+     * @return string The stored country.
      */
-    public function getCountry($email)
+    public function getCountry()
     {
-        $stmt = $this->db->prepare("SELECT country FROM tnmt_users WHERE email = :email");
-        $stmt->execute(['email' => $email]);
-
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $user ? $user['country'] : null;
-    }
-
-    public function getId($email)
-    {
-        $stmt = $this->db->prepare("SELECT id_users FROM tnmt_users WHERE email = :email");
-        $stmt->execute(['email' => $email]);
-
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $user ? $user['id_users'] : null;
+        return $this->country;
     }
 
     /**
-     * Register a new user
-     * @return bool True if the user was registered, false otherwise
-     * @throws Exception If the email is already used
+     * Gets the user's role.
+     * 
+     * @return INT The stored role.
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+
+    // DATABASE
+
+    /**
+     * Retrieves a user's data from the database by user ID.
+     * 
+     * - Prepares and executes a SELECT query to fetch the user's details.
+     * - Uses the user's ID as a parameter in the query.
+     * - Returns the result as an associative array.
+     * 
+     * @return array The user's data, or false if no user is found.
+     */
+    public function get()
+    {
+        $stmt = $this->db->prepare("SELECT * FROM tnmt_users WHERE id_users = :id");
+        $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
+    /**
+     * Retrieves a user's data from the database by email.
+     * 
+     * - Prepares and executes a SELECT query to fetch the user's details using the email.
+     * - Uses the user's email as a parameter in the query.
+     * - Returns the result as an associative array.
+     * 
+     * @return array The user's data, or false if no user is found.
+     */
+    public function getByMail()
+    {
+        $stmt = $this->db->prepare("SELECT * FROM tnmt_users WHERE email = :email");
+        $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Retrieves a list of users from the database with pagination.
+     * 
+     * - Prepares and executes a SELECT query to fetch user data with a specified limit and offset.
+     * - Allows pagination by controlling the number of users returned and the starting point.
+     * - Returns the results as an array of associative arrays.
+     * 
+     * @param int $offset The starting point for the query (default is 0).
+     * @param int $limit The number of users to fetch (default is 20).
+     * @return array A list of users.
+     */
+    public function getList($offset = 0, $limit = 20)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM tnmt_users LIMIT :limit OFFSET :offset");
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Compte le nombre total d'utilisateurs dans la base de données.
+     * 
+     * - Prépare et exécute une requête SELECT pour compter le nombre total d'utilisateurs.
+     * - Renvoie le nombre d'utilisateurs, ou 0 si aucun utilisateur n'est trouvé.
+     * 
+     * @return int Le nombre total d'utilisateurs.
+     */
+    public function countAll()
+    {
+        $stmt = $this->db->prepare("SELECT COUNT(*) AS user_count FROM tnmt_users ");
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result ? $result['user_count'] : 0;
+    }
+
+    /**
+     * Registers a new user in the database.
+     * 
+     * - Prepares and executes an INSERT query to add a new user with their details (first name, last name, email, nickname, password).
+     * - Sets the `date_created_account` to the current date and assigns a default role (`id_role` 1).
+     * - Returns the result of the execution (true if successful, false otherwise).
+     * 
+     * @return bool True if the user was successfully registered, false otherwise.
      */
     public function register()
     {
-        if ($this->getEmail($this->email)) throw new Exception('Cet email est déjà utilisé.');
-
-
         $stmt = $this->db->prepare("INSERT INTO `tnmt_users`(`firstname`, `lastname`, `email`, `pseudo`, `password`,`date_created_account`, `id_role`) 
         VALUES (:firstname, :lastname, :email, :pseudo, :pass, NOW(), 1)");
 
@@ -259,15 +330,26 @@ class User extends Database
         return $stmt->execute();
     }
 
+    /**
+     * Modifies a user's details in the database.
+     * 
+     * - Checks if the user's ID is set; if not, throws an exception.
+     * - Dynamically builds the UPDATE query based on the fields that are not empty (firstname, lastname, nickname, country, password).
+     * - Binds the parameters for the query and executes it.
+     * - Returns true if the update is successful, false otherwise.
+     * 
+     * @return bool True if the user was successfully modified, false otherwise.
+     * @throws Exception If the user's ID is not found.
+     */
     public function modify()
     {
-        if (empty($this->email)) {
-            
+        if (empty($this->id)) {
+
             throw new Exception('Email non trouvé, réessayer plus tard');
         }
 
         $updates = [];
-        $params = [':email' => $this->email];
+        $params = [':id' => $this->id];
 
         if (!empty($this->firstname)) {
             $updates[] = "`firstname` = :firstname";
@@ -293,10 +375,14 @@ class User extends Database
             $updates[] = "`password` = :pass";
             $params[':pass'] = $this->password;
         }
+        if (!empty($this->email)) {
+            $updates[] = "`email` = :email";
+            $params[':email'] = $this->email;
+        }
 
 
         if (!empty($updates)) {
-            $sql = "UPDATE `tnmt_users` SET " . implode(", ", $updates) . " WHERE `email` = :email";
+            $sql = "UPDATE `tnmt_users` SET " . implode(", ", $updates) . " WHERE `id_users` = :id";
             $stmt = $this->db->prepare($sql);
 
             // Associer les valeurs
@@ -310,39 +396,92 @@ class User extends Database
         return false;
     }
 
-    /**
-     * Get all users from the tnmt_users table.
-     * @return array array containing all users.
-     */
-    public function getUsers()
-    {
-        $stmt = $this->db->prepare("SELECT * FROM tnmt_users ");
-        $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
     /**
-     * Deletes a user from the tnmt_users table based on their ID.
-     * @param string $id name of button user with ID user in value.
-     * @return bool Returns true on success, false on failure.
+     * Deletes a user from the database by their ID.
+     * 
+     * - Binds the user ID as a parameter in the query.
+     * - Returns true if the deletion is successful, false otherwise.
+     * 
+     * @return bool True if the user was successfully deleted, false otherwise.
      */
-    public function deleteUser($id)
+    public function deleteUser()
     {
         $stmt = $this->db->prepare("DELETE FROM tnmt_users WHERE id_users = :id_users");
-        $stmt->bindValue(':id_users', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':id_users', $this->id, PDO::PARAM_INT);
 
         return $stmt->execute();
     }
 
-    /**
-     * Counts the total number of users in the tnmt_users table.
-     * @return array Returns an associative array containing the count of users with the key 'user_count'.
-     */
-    public function countUser()
+    //Verify in Database
+
+    public function emailIsUnique($email): bool
     {
-        $stmt = $this->db->prepare("SELECT COUNT(*) AS user_count FROM tnmt_users ");
+        $stmt = $this->db->prepare("SELECT COUNT(*) FROM tnmt_users WHERE email = :email");
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetchColumn() == 0;
+    }
+
+    public function nicknameIsUnique($nickname): bool
+    {
+        $sql = "SELECT COUNT(*) FROM tnmt_users WHERE pseudo = :nickname";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':nickname', $nickname, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return $stmt->fetchColumn() == 0;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// public function __construct()
+// {
+//     parent::__construct();
+
+//     if (!empty($_SESSION['id'])) {
+//         try {
+//             $this->setId($_SESSION['id']);
+//             $this->load();
+//         } catch (\Exception $e) {
+//         }
+//     }
+// }
+
+
+
+
+
+
+
+// public function load()
+    // {
+    //     $stmt = $this->db->prepare("SELECT * FROM tnmt_users WHERE id_users = :id");
+    //     $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+    //     $stmt->execute();
+
+    //     $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    //     if (!empty($data)) {
+    //         $this->id = $data['id_users'];
+    //         $this->firstname = $data['firstname'];
+    //         $this->lastname = $data['lastname'];
+    //         $this->email = $data['email'];
+    //         $this->nickname = $data['pseudo'];
+    //         $this->password = $data['password'];
+    //         $this->country = $data['country'];
+    //         $this->role = $data['id_role'];
+    //     }
+    // }

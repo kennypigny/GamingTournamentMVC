@@ -31,6 +31,9 @@ small {
   font-size: 10px;
   color: red;
 }
+.green {
+  color: #02b754;
+}
 
 
 /* NAVBAR */
@@ -188,7 +191,9 @@ small {
 }
 
 .nickname {
-  color: #f2f2f2;
+  display: block;
+  padding: 5px 0 0 2.6rem;
+  font-size: 1.2rem;
 }
 
 /* END NAVBAR */
@@ -349,6 +354,7 @@ footer a {
   .navbar-side {
     padding: 0;
     width: 20%;
+    max-width: 325px;
     visibility: visible;
     transition: none;
     transform: translateX(0px);

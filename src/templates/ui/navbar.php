@@ -48,10 +48,10 @@
 	</ul>
 	<ul>
 		<li class="divider-nav"></li>
-		<?php if (!empty($_SESSION['email'])) { ?>
+		<?php if (!empty($_SESSION['id'])) { ?>
 			<li class="block">
 				<img src="/assets/img/General/user.png" alt="Icone profil" />
-				<a href="/myProfil"> Mon profil <span>(<?= $_SESSION['nickname'] ?>)</span> </a>
+				<a href="/myProfil"> Mon profil <span class="nickname">(<?= $_SESSION['nickname'] ?>)</span> </a>
 			</li>
 			<li class="block">
 				<img src="/assets/img/General/user.png" alt="Icone profil" />
@@ -63,7 +63,7 @@
 					<img
 						src="/assets/img/General/add-user.png"
 						alt="Icone admin" />
-					<a href="/AdminDashboard">Tableau de bord</a>
+					<a href="admin/dashboard">Tableau de bord</a>
 				</li>
 			<?php } ?>
 		<?php

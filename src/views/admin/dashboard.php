@@ -68,7 +68,7 @@
             </a>
           </div>
           <!-- fin carte tournoi -->
-          
+
         </div>
       </div>
 
@@ -83,7 +83,7 @@
         <div class="container-resume">
           <div class="number-resume">
             <p>Total :</p>
-            <span class="blue" id="tournament-waiting"><?= $countUsers['user_count']; ?></span>
+            <span class="blue" id="tournament-waiting"><?= $countUsers ?></span>
           </div>
           <div class="number-resume">
             <p>Connectés :</p>
@@ -115,14 +115,34 @@
         </div>
 
         <!-- container des résultats de la recherche utilisateur -->
-        <div class="container-result-search-user">
+        <a href="/admin/dashboard?page=<?= $page <= 0 ? 0 : $page - 1 ?>#listUser">précedent</a>
+        <a href="/admin/dashboard?page=<?= $page >= $maxPage ? $maxPage : $page + 1 ?>#listUser">suivant</a>
+        <p><?= ($page + 1) * $limit ?> / <?= $countUsers ?></p>
+        <div id="listUser" class="container-result-search-user">
           <div class="table-title">
             <h4>Nom</h4>
             <h4>Email</h4>
             <h4>Pseudo</h4>
           </div>
           <ul class="list-users">
-            <?php showUsers() ?>
+            <?php foreach ($users as $user) { ?>
+              <li class="list-item">
+                <a class="user-lign" href="/" target="_blank">
+                  <p class="name">
+                    <img
+                      src="./assets/img/General/PhotoProfil.jpg"
+                      alt="Photo de profil" /><?= $user['firstname'] ?> <?= $user['lastname'] ?>
+                  </p>
+                  <p class="user-email"><?= $user['email'] ?></p>
+                  <p class="user-nickname">
+                    <?= $user['pseudo'] ?><span class="green">"Online"</span>
+                  </p>
+                  <form method="POST">
+                    <button class="delete" type="submit" name="get-id" value="<?= $user['id_users'] ?>"><img src="../assets/img/General/poubelle.png" alt="Supprimer"></button>
+                  </form>
+                </a>
+              </li>
+            <?php } ?>
           </ul>
         </div>
       </div>

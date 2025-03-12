@@ -1,5 +1,3 @@
-<?php ob_start(); ?>
-
 <header>
 	<!--  BANNER SLOGAN & CTA mobile changement de banniere et mise en page avec @média -->
 	<div class="main-container-header">
@@ -11,14 +9,14 @@
 					atteignez les sommets ! Vos victoires commencent ici.
 				</h2>
 				<div class="container-cta-header">
-					<?php if (empty($_SESSION['email'])) { ?>
+					<?php if (empty($_SESSION['id'])) { ?>
 						<button class="cta">
 							<a href="./SignUp">Inscrivez-vous dès maintenant</a>
 						</button>
 					<?php
 					} else { ?>
 						<div class="welcome">
-							<p>Bonjour, <?= $_SESSION['nickname'] ?> !</p>
+							<p>Bonjour, <?= $_SESSION['nickname'] ?>!</p>
 						</div>
 
 					<?php } ?>

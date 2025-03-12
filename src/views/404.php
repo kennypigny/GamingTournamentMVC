@@ -8,7 +8,8 @@
 
     </div>
 
-    <p>La page que vous recherchez n'existe pas :'( </p>
+    <p>La page que vous recherchez n'existe pas encore ! :'( </p><br>
+    <p>Revenez ultérieurement ! </p>
 
     <a href="/">Retour à l'accueil</a>
 

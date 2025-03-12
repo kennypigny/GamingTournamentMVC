@@ -84,11 +84,18 @@ h2{
 option{
   color: black;
 }
+.container-form{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 form{
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
 }
 
 ::placeholder {
@@ -293,6 +300,12 @@ input, select{
 
 }
 @media (min-width: 1300px) {
+  .container-info-profil{
+    width: 85%;
+  }
+  .container-history{
+    width: 85%;
+  }
 
   .photo {
 

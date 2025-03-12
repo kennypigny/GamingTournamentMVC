@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Database class for handling the connection to the database.
+ * 
+ * - Establishes a connection to the MySQL database using PDO.
+ * - Configures the connection to throw exceptions on errors and to fetch results as associative arrays.
+ * - If the connection fails, logs the error and displays a generic connection error message.
+ * 
+ * @throws Exception If the connection fails, an exception is thrown.
+ */
 class Database
 {
     protected $db;

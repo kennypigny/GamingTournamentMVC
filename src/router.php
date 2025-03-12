@@ -3,6 +3,9 @@ session_start();
 
 require 'utils/utils.php';
 require 'models/Database.php';
+require 'models/User.php';
+require 'models/Tournament.php';
+
 
 $path = $_SERVER['REDIRECT_URL'];
 
