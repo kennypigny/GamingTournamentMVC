@@ -17,9 +17,9 @@ body {
 }
 h1 {
   width: 90%;
-  height: 100px;
-  line-height: 100px;
-  font-size: 2rem;
+  height: auto;
+  line-height: 50px;
+  font-size: 1rem;
   text-align: center;
   margin: 0 auto 50px;
   background-color: #28303f;
@@ -148,6 +148,13 @@ label img:active{
 }
 
 /* TABLEAU DES UTILISATEUR */
+.box-button{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+
 .container-result-search-user{
   display: flex;
   flex-wrap: wrap;
@@ -223,15 +230,15 @@ li > img {
   background-color: transparent;
 
 }
-@media (max-width: 600px) {
-  h1 {
-    font-size: 1.1rem;
-  }
-  .input-search-container input {
-    width: 80%;
-  }
+.input-search-container input {
+  width: 80%;
 }
+@media (min-width: 768px){
+  .input-search-container input {
+    width: 90%;
+  }
 
+}
 @media (max-width: 1024px) {  
   .table-title {
     display: none;

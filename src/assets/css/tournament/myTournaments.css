@@ -1,4 +1,7 @@
 /* SECTION MAIN */
+main{
+  width: 100%;
+}
 .main-container-organised-tournament {
   width: 100%;
   display: flex;
@@ -38,6 +41,7 @@ h1 {
   
 }
 @media (min-width: 1024px) {
+
   .container-organised-tournament {
     width: 80%;
   }

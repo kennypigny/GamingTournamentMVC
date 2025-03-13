@@ -1,0 +1,372 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto Condensed", sans-serif;
+  font-optical-sizing: auto;
+  color: #f2f2f2;
+  text-shadow: 0 0 10px rgb(0, 0, 0);
+}
+body {
+  background-color: #151b27;
+}
+.container-list-sub-desktop {
+  display: none;
+}
+
+main {
+  width: 100%;
+  padding: 5rem 0 0;
+}
+h1 {
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 2rem;
+}
+/* TOGGLE MENU DEROULANT  */
+.active-sheet-tournament {
+  display: none;
+}
+
+/* MAIN Container feuille de tournoi */
+.main-container-tournament-sheet {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+}
+.info-general-tournament-sheet {
+  width: 100%;
+  max-width: 450px;
+  margin-top: 2rem;
+  background-color: #232f65;
+  border: 1px solid black;
+  box-shadow: 0 0 15px rgb(0, 0, 0, 55%);
+}
+
+/* CONTAINER INFO GENERAL */
+/* titre et image information générale */
+.title-sheet-tournament {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #28303f;
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid black;
+  font-weight: 500;
+  padding: 0 10px 0 10px;
+}
+.title-sheet-tournament h2 {
+  font-size: 18px;
+}
+.card-tournament-sheet img {
+  width: 100%;
+}
+
+/* box information générale */
+
+.info-card {
+  width: 90%;
+  margin: auto;
+}
+h3 {
+  font-size: 1rem;
+  margin: 12px 0;
+}
+h4 {
+  margin: 15px 0 30px;
+  font-size: 1.3rem;
+}
+/* divider vertical de la box info general  */
+.container-divider-card {
+  display: flex;
+  margin-bottom: 20px;
+}
+.container-left {
+  width: 50%;
+  padding-right: 1rem;
+  border-right: solid 1px #fff;
+}
+.container-right {
+  width: 50%;
+  padding-left: 2rem;
+  border-left: solid 1px #fff;
+}
+#sub-players {
+  margin-right: 10px;
+  font-weight: bolder;
+  color: rgb(19, 113, 61);
+}
+#total-players {
+  margin-left: 10px;
+}
+/* DIVIDER  horizontal BOX INFO GENERALE */
+.divider-sheet-tournament-first {
+  width: 90%;
+  height: 2px;
+  background-color: #fff;
+  margin: 50px auto 50px;
+}
+.divider-sheet-tournament {
+  width: 75%;
+  height: 2px;
+  background-color: #fff;
+  margin: 50px auto;
+}
+.container-info .divider-sheet-tournament:nth-child(1) {
+  margin-top: 50px auto;
+}
+/* BOX DES DESCRIPTION TITRE ET REGLES  */
+.description-tournament {
+  width: 90%;
+  margin: auto;
+  padding-bottom: 40px;
+}
+.description-tournament p {
+  width: 90%;
+  margin: auto;
+  background-color: rgb(255, 255, 255, 0.15);
+  padding: 10px 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+/* BUTTON MODIFIER */
+.container-cta {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  margin: 40px auto 20px;
+}
+.cta {
+  font-size: 1rem;
+  width: 150px;
+  height: 30px;
+  border-radius: 25px;
+  color: rgb(158, 219, 52);
+  background-color: #001c61;
+  box-shadow: 0 0 10px rgb(158, 219, 52, 0.8);
+  transition: all 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+}
+.cta a {
+  text-decoration: none;
+}
+
+.cta:active {
+  transform: translateY(1px);
+  box-shadow: 0 0 10px 2px rgb(158, 219, 52);
+}
+
+/* CONTAINER STRUCTURE DU TOURNOI */
+.main-container-structure {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto 50px;
+}
+.container-structure-tournament {
+  width: 100%;
+  max-width: 450px;
+  margin-top: 2rem;
+  background-color: #232f65;
+}
+.structure-tournament {
+  width: 100%;
+  overflow: auto;
+}
+/* FOOTER */
+footer {
+  width: 100%;
+  height: 40vh;
+  background-color: #1e283d;
+  text-align: center;
+  padding-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+footer h3 {
+  font-size: 21px;
+}
+.container-footer {
+  width: 100%;
+  height: 100%;
+}
+.contact {
+  height: 80%;
+}
+.divider-footer {
+  width: 50%;
+  height: 2px;
+  background: #f2f2f2;
+  margin: 10px auto;
+}
+footer p {
+  font-size: 1rem;
+  margin: 8px 0;
+}
+footer a {
+  margin-bottom: 20px;
+  margin-right: 10px;
+}
+
+.copyright {
+  width: 100%;
+  height: 20%;
+  background-color: #151b27;
+  display: flex;
+  align-items: center;
+}
+.copyright p {
+  width: 100%;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+/* BUTTON SUBMIT REGISTER */
+.container-button-register {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.register-submit {
+  font-size: 1.2rem;
+  width: 250px;
+  height: 50px;
+  margin: 30px 0 100px;
+  border-radius: 25px;
+  color: rgb(158, 219, 52);
+  background-color: #001c61;
+  box-shadow: 0 0 20px rgb(158, 219, 52, 0.4);
+  transition: all 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+.register-submit:active {
+  transform: translateY(5px);
+  
+}
+.register-submit:hover{
+  box-shadow: 0 0 20px rgb(158, 219, 52);
+}
+@media (min-width: 768px) {
+  .dropdown {
+    display: none;
+  }
+  h1 {
+    width: 60%;
+    max-width: 850px;
+    margin: 0 auto;
+    padding-left: 10px;
+  }
+  /* LISTE DES PARTICIPANT qui apparait SEULEMENT au dessus de 768px*/
+  .container-list-sub-desktop {
+    z-index: 2;
+    padding: 5rem 0 0 1rem;
+    background-color: rgb(40, 48, 63, 0.4);
+    position: fixed;
+    width: 20%;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    left: 80%;
+  }
+  .list-sub h2 {
+    margin-bottom: 1rem;
+  }
+  .list-sub ul {
+    list-style: none;
+  }
+  .list-sub li {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .list-sub li a {
+    text-decoration: none;
+    font-style: italic;
+    color: #9fa5b2;
+  }
+  .list-sub li a:visited {
+    color: #9fa5b2;
+  }
+  .list-sub li a:hover {
+    color: #fff;
+  }
+  /* CONTAINER INFORMATION GENERAL */
+  .main-container-tournament-sheet {
+    width: 100%;
+  }
+  .info-general-tournament-sheet {
+    width: 50%;
+  }
+
+  /* CONTAINER STRUCTURE TOURNAMENT */
+  .main-container-structure {
+    width: 100%;
+  }
+  .container-structure-tournament {
+    width: 50%;
+  }
+
+  footer {
+    width: 60%;
+    margin: auto;
+  }
+}
+@media (min-width: 1024px) {
+  .info-general-tournament-sheet {
+    max-width: 650px;
+    width: 55%;
+  }
+  .container-structure-tournament {
+    max-width: 650px;
+    width: 55%;
+  }
+  footer {
+    width: 60%;
+  }
+}
+@media (min-width: 1300px) {
+  h4 {
+    font-size: 1.5rem;
+  }
+  .container-list-sub-desktop {
+    width: 15%;
+    left: 85%;
+    padding: 5rem 0 0 1.5rem;
+  }
+
+  .info-general-tournament-sheet {
+    max-width: 850px;
+    width: 60%;
+  }
+  .container-structure-tournament {
+    max-width: 850px;
+    width: 60%;
+  }
+  footer {
+    width: 70%;
+  }
+}
+@media (min-width: 1595px) {
+  .container-list-sub-desktop {
+    padding: 5rem 0 0 3rem;
+  }
+  .container-structure-tournament {
+    max-width: 1024px;
+  }
+}
+/*
+@media (min-width: 768px) {
+}
+@media (min-width: 1024px)  {
+}
+@media (min-width: 1300px)  {
+}
+@media (min-width: 1595px) {
+} */

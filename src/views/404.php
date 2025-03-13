@@ -4,7 +4,7 @@
     <h1>404 ERROR</h1>
 
     <div class="container-img">
-        <img src="../assets/img/General/38c78bc0-ca30-4c25-9adb-be7ee808e653.webp" alt="Robot 404">
+        <img src="/assets/img/General/38c78bc0-ca30-4c25-9adb-be7ee808e653.webp" alt="Robot 404">
 
     </div>
 

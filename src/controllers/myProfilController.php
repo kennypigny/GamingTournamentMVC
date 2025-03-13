@@ -1,20 +1,22 @@
 <?php
 
-//Verification de la connexion
+// Check if the user is logged in
 if (! isset($_SESSION['id'])) {
     header('Location: /');
     exit();
 }
 
-
+// Instantiate the user with the session ID
 $user = new User();
 $user->setId($_SESSION['id']);
 $dbUser = $user->get();
 $error = [];
 $success = [];
 
+//Delete user account
 if (!empty($_POST['delete'])) {
 
+    // Verify password before deleting the account
     if (password_verify($_POST['delete-account'], $dbUser['password'])) {
         $user->deleteUser();
         session_destroy();
@@ -24,7 +26,7 @@ if (!empty($_POST['delete'])) {
     }
 }
 
-//Verification de la modification
+// Modification form
 if (!empty($_POST)) {
 
     if (!empty($_POST['nickname'])) {
@@ -63,8 +65,8 @@ if (!empty($_POST)) {
             $error['country'] = $e->getMessage();
         }
     }
-
-
+    
+    //Change password
     if (!empty($_POST['new-password'])) {
 
         if (!password_verify($_POST['password'], $dbUser['password'])) {
@@ -90,6 +92,7 @@ if (!empty($_POST)) {
         }
     }
 
+    //Change Mail
     if (!empty($_POST['new-mail'])) {
 
         if (!password_verify($_POST['password-new-mail'], $dbUser['password'])) {
@@ -114,9 +117,10 @@ if (!empty($_POST)) {
         }
     }
 
-
+    // Update the user's data in the database
     $user->modify();
-
+    
+     // Refresh user information
     $dbUser = $user->get();
 
     $_SESSION['id'] = $dbUser['id_users'];
@@ -127,6 +131,7 @@ if (!empty($_POST)) {
     $_SESSION['country'] = $dbUser['country'];
 }
 
+//END modification form
 
 view('myProfil', [
     'error' => $error,

@@ -59,16 +59,13 @@ class User extends Database
      */
     public function setFirstname($value)
     {
-        if (! empty($value)) {
-            if (preg_match('/^[\p{L} \'-]+$/u', $value)) {
-
-                $this->firstname = trim(htmlspecialchars($value, ENT_QUOTES, 'UTF-8'));
-            } else {
-                throw new Exception('Votre prénom doit contenir uniquement des lettres');
-            }
-        } else {
+        if (empty($value)) {
             throw new Exception('Veuillez renseigner un nom');
         }
+        if (!preg_match('/^[\p{L} \'-]+$/u', $value)) {
+            throw new Exception('Votre prénom doit contenir uniquement des lettres');
+        }
+        $this->firstname = trim(htmlspecialchars($value, ENT_QUOTES, 'UTF-8'));
     }
     /**
      * Gets the user's first name.
@@ -92,8 +89,14 @@ class User extends Database
      */
     public function setLastname($value)
     {
-        if (empty($value)) throw new Exception('Veuillez renseigner un prénom');
-        if (!preg_match('/^[\p{L} \'-]+$/u', $value)) throw new Exception('Votre nom doit contenir uniquement des lettres');
+        if (empty($value)) {
+
+            throw new Exception('Veuillez renseigner un prénom');
+        }
+        if (!preg_match('/^[\p{L} \'-]+$/u', $value)) {
+
+            throw new Exception('Votre nom doit contenir uniquement des lettres');
+        }
 
         $this->lastname = trim(htmlspecialchars($value, ENT_QUOTES, 'UTF-8'));
     }
@@ -120,9 +123,15 @@ class User extends Database
      */
     public function setNickname($value)
     {
-        if (empty($value)) throw new Exception('Veuillez renseigner un pseudo');
-        if (strlen($value) < 3 || strlen($value) > 15) throw new Exception('Votre pseudo doit contenir entre 3 et 15 caractères');
-        if (!preg_match('/^[a-zA-Z0-9]+$/', $value)) throw new Exception('Votre pseudo doit contenir uniquement des lettres ou des chiffres');
+        if (empty($value)) {
+            throw new Exception('Veuillez renseigner un pseudo');
+        }
+        if (strlen($value) < 3 || strlen($value) > 15) {
+            throw new Exception('Votre pseudo doit contenir entre 3 et 15 caractères');
+        }
+        if (!preg_match('/^[a-zA-Z0-9]+$/', $value)) {
+            throw new Exception('Votre pseudo doit contenir uniquement des lettres ou des chiffres');
+        }
 
         $this->nickname = trim(htmlspecialchars($value, ENT_QUOTES, 'UTF-8'));
     }
@@ -149,8 +158,12 @@ class User extends Database
      */
     public function setEmail($value)
     {
-        if (empty($value)) throw new Exception('Veuillez renseigner un email');
-        if (!filter_var($value, FILTER_VALIDATE_EMAIL)) throw new Exception('Veuillez renseigner email valide');
+        if (empty($value)) {
+            throw new Exception('Veuillez renseigner un email');
+        }
+        if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
+            throw new Exception('Veuillez renseigner email valide');
+        }
 
         $this->email = trim($value);
     }
@@ -176,7 +189,7 @@ class User extends Database
      */
     public function setPassword($value)
     {
-        if (! empty($value)) {
+        if (!empty($value)) {
             if (strlen($value) >= 8) {
 
                 $this->password = password_hash($value, PASSWORD_DEFAULT);
@@ -415,6 +428,13 @@ class User extends Database
 
     //Verify in Database
 
+    /**
+     * Checks if the given email is already used in the database.
+     * Executes a query to count occurrences of the email.
+     *
+     * @param string $email The email to verify.
+     * @return bool True if the email is unique, false otherwise.
+     */
     public function emailIsUnique($email): bool
     {
         $stmt = $this->db->prepare("SELECT COUNT(*) FROM tnmt_users WHERE email = :email");
@@ -424,6 +444,13 @@ class User extends Database
         return $stmt->fetchColumn() == 0;
     }
 
+    /**
+     * Checks if the given nickname is already used in the database.
+     * Executes a query to count occurrences of the nickname.
+     *
+     * @param string $nickname The nickname to verify.
+     * @return bool True if the nickname is unique, false otherwise.
+     */
     public function nicknameIsUnique($nickname): bool
     {
         $sql = "SELECT COUNT(*) FROM tnmt_users WHERE pseudo = :nickname";

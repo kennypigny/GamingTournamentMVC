@@ -1,11 +1,11 @@
 <?php
-if (!empty($_SESSION['email'])) {
-    header("Location: /");
+if (!empty($_SESSION['id'])) {
+    header("Location: /"); // Redirect if already logged in
     exit;
 }
+
 $error = [];
 
-//Process form submission for user registration.
 if (! empty($_POST)) {
     $user = new User();
 
@@ -40,14 +40,13 @@ if (! empty($_POST)) {
     }
 
 
-    //Send data to database if there are no errors.
     if (empty($error)) {
 
         if ($user->register()) {
-            header('Location: /');
+            header('Location: /'); // Redirect to home page after successful registration
             exit();
         } else {
-            $error['global'] = 'Echec de l\'inscription';
+            $error['global'] = 'Echec de l\'inscription';  // General error message if registration fails
         }
     }
 }

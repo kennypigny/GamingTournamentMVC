@@ -1,5 +1,5 @@
 <div class="card-tournament">
-    <a href="/tournamentSheet.html" target="_blank">
+    <a href=" <?= $link?>" target="_blank">
         <div class="banner-card-tournament"></div>
         <h4>
             T1 tournament | 16 teams | direct elimination | Cashprize 2500RP

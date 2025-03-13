@@ -1,3 +1,4 @@
+<?php ob_start() ?>
 <header>
 	<!--  BANNER SLOGAN & CTA mobile changement de banniere et mise en page avec @média -->
 	<div class="main-container-header">
@@ -70,14 +71,14 @@
 		<div class="container-tournament-mostPopular">
 			<h3>Trouver un tournoi :</h3>
 			<?php
-			template('cards/tournament');
-			template('cards/tournament');
-			template('cards/tournament');
-			template('cards/tournament');
-			template('cards/tournament');
-			template('cards/tournament');
-			template('cards/tournament');
-			template('cards/tournament');
+			template('cards/tournament', ['link' => '/tournament/sheet']);
+			template('cards/tournament', ['link' => '/tournament/sheet']);
+			template('cards/tournament', ['link' => '/tournament/sheet']);
+			template('cards/tournament', ['link' => '/tournament/sheet']);
+			template('cards/tournament', ['link' => '/tournament/sheet']);
+			template('cards/tournament', ['link' => '/tournament/sheet']);
+		
+			
 			?>
 		</div>
 	</div>
