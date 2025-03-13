@@ -1,8 +1,8 @@
     <?php ob_start() ?>
     <main>
       <h1>TABLEAU DE BORD ADMINISTRATEUR :</h1>
-            <!-- SECTION UTILISATEUR  -->
-            <div class="box">
+      <!-- SECTION UTILISATEUR  -->
+      <div class="box">
         <div class="title-box dropdown-tournament-admin">
           <h2>Utilisateurs</h2>
           <img
@@ -44,13 +44,10 @@
         </div>
 
         <!-- container des résultats de la recherche utilisateur -->
-        <div class="box-button">
-          <a class="previous" href="/admin/dashboard?page=<?= $page <= 0 ? 0 : $page - 1 ?>#listUser">Précedent</a>
-          <a class="next" href="/admin/dashboard?page=<?= $page >= $maxPage ? $maxPage : $page + 1 ?>#listUser">Suivant</a>
-        </div>
+
         <div id="listUser" class="container-result-search-user">
           <div class="table-title">
-            <h4>Nom</h4>
+            <h4>Prenom/Nom</h4>
             <h4>Email</h4>
             <h4>Pseudo</h4>
           </div>
@@ -65,7 +62,7 @@
                   </p>
                   <p class="user-email"><?= $user['email'] ?></p>
                   <p class="user-nickname">
-                    <?= $user['pseudo'] ?><span class="green">"Online"</span>
+                    <?= $user['pseudo'] ?> &nbsp; <span class="green">"Online"</span>
                   </p>
                   <form method="POST">
                     <button class="delete" type="submit" name="get-id" value="<?= $user['id_users'] ?>"><img src="/assets/img/General/poubelle.png" alt="Supprimer"></button>

@@ -43,7 +43,7 @@
 		<li class="divider-nav"></li>
 		<li>
 			<img src="/assets/img/General/feedback.png" alt="Icone feedback" />
-			<a href="">Feedback</a>
+			<a href="/error">Feedback</a>
 		</li>
 	</ul>
 	<ul>
@@ -63,7 +63,7 @@
 					<img
 						src="/assets/img/General/add-user.png"
 						alt="Icone admin" />
-					<a href="admin/dashboard">Tableau de bord</a>
+					<a href="/admin/dashboard">Tableau de bord</a>
 				</li>
 			<?php } ?>
 		<?php

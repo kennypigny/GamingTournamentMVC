@@ -221,12 +221,12 @@
         </div>
 
         <div class="box-history-profil box-dropdown">
-          <?= template('cards/tournament'); ?>
-          <?= template('cards/tournament'); ?>
-          <?= template('cards/tournament'); ?>
-          <?= template('cards/tournament'); ?>
-          <?= template('cards/tournament'); ?>
-          <?= template('cards/tournament'); ?>
+          <?= template('cards/tournament', ['link' => '/tournament/sheet']);?>
+          <?= template('cards/tournament', ['link' => '/tournament/sheet']);?>
+          <?= template('cards/tournament', ['link' => '/tournament/sheet']);?>
+          <?= template('cards/tournament', ['link' => '/tournament/sheet']);?>
+          <?= template('cards/tournament', ['link' => '/tournament/sheet']);?>
+          <?= template('cards/tournament', ['link' => '/tournament/sheet']);?>
         </div>
       </div>
     </div>

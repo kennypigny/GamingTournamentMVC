@@ -291,11 +291,9 @@ class User extends Database
      * @param int $limit The number of users to fetch (default is 20).
      * @return array A list of users.
      */
-    public function getList($offset = 0, $limit = 20)
+    public function getList()
     {
-        $stmt = $this->db->prepare("SELECT * FROM tnmt_users LIMIT :limit OFFSET :offset");
-        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt = $this->db->prepare("SELECT * FROM tnmt_users");
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

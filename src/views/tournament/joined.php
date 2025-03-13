@@ -5,14 +5,12 @@
       <h1>Mes tournois a venir :</h1>
       <div class="box-organised-tournament">
         <?php
-        template('cards/tournament');
-        template('cards/tournament');
-        template('cards/tournament');
-        template('cards/tournament');
-        template('cards/tournament');
-        template('cards/tournament');
+        template('cards/tournament', ['link' => '/tournament/sheet']);
+        template('cards/tournament', ['link' => '/tournament/sheet']);
+        template('cards/tournament', ['link' => '/tournament/sheet']);
+        template('cards/tournament', ['link' => '/tournament/sheet']);
+        template('cards/tournament', ['link' => '/tournament/sheet']);
         ?>
-
       </div>
     </div>
   </div>

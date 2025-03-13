@@ -5,14 +5,13 @@
       <h1>Mes tournois organisés </h1>
       <div class="box-organised-tournament">
         <?php
-        template('cards/tournament', ['link' => 'management']);
-        template('cards/tournament', ['link' => 'management']);
-        template('cards/tournament', ['link' => 'management']);
-        template('cards/tournament', ['link' => 'management']);
-        template('cards/tournament', ['link' => 'management']);
-        template('cards/tournament', ['link' => 'management']);
-        template('cards/tournament', ['link' => 'management']);
-        template('cards/tournament', ['link' => 'management']);
+        template('cards/tournament', ['link' => '/tournament/management']);
+        template('cards/tournament', ['link' => '/tournament/management']);
+        template('cards/tournament', ['link' => '/tournament/management']);
+        template('cards/tournament', ['link' => '/tournament/management']);
+        template('cards/tournament', ['link' => '/tournament/management']);
+        template('cards/tournament', ['link' => '/tournament/management']);
+        template('cards/tournament', ['link' => '/tournament/management']);
 
 
 
