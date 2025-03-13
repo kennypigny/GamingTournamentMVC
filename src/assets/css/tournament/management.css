@@ -1,29 +1,11 @@
-/* GENERAL */
-*,
-::before,
-::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: "Roboto Condensed", sans-serif;
-  font-optical-sizing: auto;
-  
-  text-shadow: 0 0 10px rgb(0, 0, 0, 0.6);
-}
-body {
-  background-color: #151b27;
-  width: 100%;
-  color: #f2f2f2;
+input{
+  color: black;
 }
 main {
   width: 100%;
-
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-}
-footer{
-  margin-top: 100px;
 }
 h1 {
   width: 100%;
