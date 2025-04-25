@@ -43,10 +43,10 @@ if (! empty($_POST)) {
     if (empty($error)) {
 
         if ($user->register()) {
-            header('Location: /'); // Redirect to home page after successful registration
+            header('Location: /'); 
             exit();
         } else {
-            $error['global'] = 'Echec de l\'inscription';  // General error message if registration fails
+            $error['global'] = 'Echec de l\'inscription';  
         }
     }
 }

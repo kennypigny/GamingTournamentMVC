@@ -22,33 +22,7 @@ class User extends Database
 
     //SETTER ET GETTER
 
-    /**
-     * Sets the ID of the user.
-     * 
-     * - Checks if the provided value is empty and throws an exception if it is.
-     * 
-     * @param $value The ID value to set.
-     * @throws Exception If the value is empty.
-     */
-    public function setId($value)
-    {
-        if (empty($value)) throw new Exception('Veuillez renseigner un id');
-
-        $this->id = (int) $value;
-    }
-    /**
-     * Gets the user ID.
-     * 
-     * @return int The ID of the user.
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-
-
-    /**
+        /**
      * Sets the user's first name after validation and sanitization.
      * 
      * - Ensures the value is not empty and contains only valid characters.
@@ -75,6 +49,30 @@ class User extends Database
     public function getFirstname()
     {
         return $this->firstname;
+    }
+
+    /**
+     * Sets the ID of the user.
+     * 
+     * - Checks if the provided value is empty and throws an exception if it is.
+     * 
+     * @param $value The ID value to set.
+     * @throws Exception If the value is empty.
+     */
+    public function setId($value)
+    {
+        if (empty($value)) throw new Exception('Veuillez renseigner un id');
+
+        $this->id = (int) $value;
+    }
+    /**
+     * Gets the user ID.
+     * 
+     * @return int The ID of the user.
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
 
@@ -258,7 +256,7 @@ class User extends Database
         $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
         $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetch();
     }
 
 
@@ -277,7 +275,7 @@ class User extends Database
         $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
         $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetch();
     }
 
     /**
@@ -296,7 +294,7 @@ class User extends Database
         $stmt = $this->db->prepare("SELECT * FROM tnmt_users");
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll();
     }
 
     /**
@@ -312,9 +310,9 @@ class User extends Database
         $stmt = $this->db->prepare("SELECT COUNT(*) AS user_count FROM tnmt_users ");
         $stmt->execute();
 
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->fetch();
 
-        return $result ? $result['user_count'] : 0;
+        return $result['user_count'];
     }
 
     /**
@@ -356,7 +354,7 @@ class User extends Database
     {
         if (empty($this->id)) {
 
-            throw new Exception('Email non trouvé, réessayer plus tard');
+            throw new Exception('service indisponnible, réessayer plus tard');
         }
 
         $updates = [];
@@ -390,6 +388,7 @@ class User extends Database
             $updates[] = "`email` = :email";
             $params[':email'] = $this->email;
         }
+        
 
 
         if (!empty($updates)) {
@@ -472,41 +471,3 @@ class User extends Database
 
 
 
-// public function __construct()
-// {
-//     parent::__construct();
-
-//     if (!empty($_SESSION['id'])) {
-//         try {
-//             $this->setId($_SESSION['id']);
-//             $this->load();
-//         } catch (\Exception $e) {
-//         }
-//     }
-// }
-
-
-
-
-
-
-
-// public function load()
-    // {
-    //     $stmt = $this->db->prepare("SELECT * FROM tnmt_users WHERE id_users = :id");
-    //     $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
-    //     $stmt->execute();
-
-    //     $data = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    //     if (!empty($data)) {
-    //         $this->id = $data['id_users'];
-    //         $this->firstname = $data['firstname'];
-    //         $this->lastname = $data['lastname'];
-    //         $this->email = $data['email'];
-    //         $this->nickname = $data['pseudo'];
-    //         $this->password = $data['password'];
-    //         $this->country = $data['country'];
-    //         $this->role = $data['id_role'];
-    //     }
-    // }

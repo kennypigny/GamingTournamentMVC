@@ -1,10 +1,7 @@
 <?php
-admin();
-
 $user = new User();
-
-
 $user->getEmail();
+admin();
 
 if (isset($_POST['get-id'])) {
   $user->setId($_POST['get-id']);
@@ -14,6 +11,6 @@ if (isset($_POST['get-id'])) {
 $countUser = $user->countAll();
 
 view('admin/dashboard', [
-  'users' => $user->getList(),
+  'usersList' => $user->getList(),
   'countUsers' => $countUser,
 ]);

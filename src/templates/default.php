@@ -20,7 +20,6 @@
 	<?php template('ui/footer')?>
 
 	<script src="/assets/js/script.js"></script>
-	<!-- <script src="/assets/js/tournament/treeSVG.js"></script> -->
 	<?php if (! empty($js)) {
 		echo '<script src="/assets/js/' . $js .'.js"></script>';
 	 }?>

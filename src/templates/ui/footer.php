@@ -15,11 +15,11 @@
 				target="_blank"
 				class="block">Politique de confidentialité</a>
 			<a href="https://www.facebook.com/?locale=fr_FR" target="_blank">
-				<img src="./assets/img/General/facebook.png" alt="Icone facebook" /></a>
+				<img src="/assets/img/General/facebook.png" alt="Icone facebook" /></a>
 			<a href="https://www.instagram.com" target="_blank">
-				<img src="./assets/img/General/instagram.png" alt="Icone instagram" /></a>
+				<img src="/assets/img/General/instagram.png" alt="Icone instagram" /></a>
 			<a href="https://x.com/?lang=fr" target="_blank">
-				<img src="./assets/img/General/twitter.png" alt="Icone twitter" /></a>
+				<img src="/assets/img/General/twitter.png" alt="Icone twitter" /></a>
 		</div>
 
 		<div class="copyright">

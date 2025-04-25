@@ -1,6 +1,5 @@
 <?php
 // render
-
 /**
  * Renders a view by including a PHP views file.
  * 
@@ -32,7 +31,6 @@ function template($path, $data = [])
 }
 
 // redirection 
-
 /**
  * Redirects the user to a specified URL.
  * 
@@ -46,6 +44,7 @@ function redirectTo($url)
 }
 
 
+// check if the admin is connected
 /**
  * Redirects the user to a specified URL.
  * 

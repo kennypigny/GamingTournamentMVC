@@ -61,9 +61,9 @@
 			<?php if ($_SESSION['email'] == 'pigny.kenny@gmail.com') { ?>
 				<li>
 					<img
-						src="/assets/img/General/add-user.png"
+						src="/assets/img/General/administrator.png"
 						alt="Icone admin" />
-					<a href="/admin/dashboard">Tableau de bord</a>
+					<a href="/admin/dashboard">Dashboard Admin</a>
 				</li>
 			<?php } ?>
 		<?php

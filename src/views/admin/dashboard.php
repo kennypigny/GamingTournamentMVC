@@ -52,7 +52,7 @@
             <h4>Pseudo</h4>
           </div>
           <ul class="list-users">
-            <?php foreach ($users as $user) { ?>
+            <?php foreach ($usersList as $user) { ?>
               <li class="list-item">
                 <a class="user-lign" href="/" target="_blank">
                   <p class="name">
