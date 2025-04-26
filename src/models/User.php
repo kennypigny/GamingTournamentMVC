@@ -326,7 +326,7 @@ class User extends Database
      */
     public function register()
     {
-        $stmt = $this->db->prepare("INSERT INTO `tnmt_users`(`firstname`, `lastname`, `email`, `pseudo`, `password`,`date_created_account`, `id_role`) 
+        $stmt = $this->db->prepare("INSERT INTO tnmt_users (firstname, lastname, email, pseudo, password, date_created_account, id_role) 
         VALUES (:firstname, :lastname, :email, :pseudo, :pass, NOW(), 1)");
 
         $stmt->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
@@ -392,7 +392,7 @@ class User extends Database
 
 
         if (!empty($updates)) {
-            $sql = "UPDATE `tnmt_users` SET " . implode(", ", $updates) . " WHERE `id_users` = :id";
+            $sql = "UPDATE tnmt_users SET " . implode(", ", $updates) . " WHERE id_users = :id";
             $stmt = $this->db->prepare($sql);
 
             // Associer les valeurs

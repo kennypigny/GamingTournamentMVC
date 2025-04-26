@@ -8,6 +8,8 @@ class Tournament extends Database
     private $date;
     private $rules;
     private $reward;
+    private $teams;
+    private $autoAccept;
 
 
     public function setIdTournament($value)
@@ -142,7 +144,7 @@ class Tournament extends Database
 
     public function create()
     {
-        $query = $this->db->prepare('INSERT INTO tournaments (title, description, date, rules, reward) VALUES (:title, :description, :date, :rules, :reward)');
+        $query = $this->db->prepare('INSERT INTO `tnmt_tournament` (``, description, date, rules, reward) VALUES (:title, :description, :date, :rules, :reward)');
         $query->bindValue(':title', $this->title, PDO::PARAM_STR);
         $query->bindValue(':description', $this->description, PDO::PARAM_STR);
         $query->bindValue(':date', $this->date, PDO::PARAM_STR);

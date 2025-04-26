@@ -1,6 +1,5 @@
 main{
     width: 100%;
-    height: 100vh;
     
 }
 
@@ -18,12 +17,36 @@ h1{
 }
 .container-img img{
     
-    width: 500px;
-    height: 500px;
+    width: 300px;
+    height: 300px;
     margin: 50px auto;
 }
 
 p{
     text-align: center;
     font-size: 20px;
+}
+main a{
+    padding-left: 50px;
+}
+
+@media (min-width: 768px) {
+    .container-img img{
+    
+        width: 500px;
+        height: 500px;
+        margin: 50px auto;
+    }
+    
+    main{
+        width: 80%;
+        margin-left: auto;
+    }
+}
+@media (min-width: 1300px) {
+    
+    main{
+        width: 85%;
+        margin-left: auto;
+    }
 }
