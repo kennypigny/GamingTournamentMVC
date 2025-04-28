@@ -27,6 +27,8 @@ if (!empty($_POST['delete'])) {
 }
 
 // Modification form
+
+// General information
 if (!empty($_POST)) {
 
     if (!empty($_POST['nickname'])) {
@@ -120,7 +122,7 @@ if (!empty($_POST)) {
     // Update the user's data in the database
     $user->modify();
     
-     // Refresh user information
+     
     $dbUser = $user->get();
 
     $_SESSION['id'] = $dbUser['id_users'];

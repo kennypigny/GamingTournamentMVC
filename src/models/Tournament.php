@@ -142,21 +142,34 @@ class Tournament extends Database
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function create()
-    {
-        $query = $this->db->prepare('INSERT INTO `tnmt_tournament` (``, description, date, rules, reward) VALUES (:title, :description, :date, :rules, :reward)');
-        $query->bindValue(':title', $this->title, PDO::PARAM_STR);
-        $query->bindValue(':description', $this->description, PDO::PARAM_STR);
-        $query->bindValue(':date', $this->date, PDO::PARAM_STR);
-        $query->bindValue(':rules', $this->rules, PDO::PARAM_STR);
-        $query->bindValue(':reward', $this->reward, PDO::PARAM_STR);
-        return $query->execute();
-    }
 
-    public function delete()
-    {
-        $query = $this->db->prepare('DELETE FROM tournaments WHERE id = :id');
-        $query->bindValue(':id', $this->id, PDO::PARAM_INT);
-        return $query->execute();
-    }
+
+
+
+
+
+
+
+
+
+
+
+    
+    // public function create()
+    // {
+    //     $query = $this->db->prepare('INSERT INTO tnmt_tournament (description, date, rules, reward) VALUES (:title, :description, :date, :rules, :reward)');
+    //     $query->bindValue(':title', $this->title, PDO::PARAM_STR);
+    //     $query->bindValue(':description', $this->description, PDO::PARAM_STR);
+    //     $query->bindValue(':date', $this->date, PDO::PARAM_STR);
+    //     $query->bindValue(':rules', $this->rules, PDO::PARAM_STR);
+    //     $query->bindValue(':reward', $this->reward, PDO::PARAM_STR);
+    //     return $query->execute();
+    // }
+
+    // public function delete()
+    // {
+    //     $query = $this->db->prepare('DELETE FROM tournaments WHERE id = :id');
+    //     $query->bindValue(':id', $this->id, PDO::PARAM_INT);
+    //     return $query->execute();
+    // }
 }
